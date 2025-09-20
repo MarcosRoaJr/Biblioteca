@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/paginas/buscar.css">
+</head>
+<div class="d-flex-center">
+    <div class="shield df-center-collum">
+        <form action="" method="post" class="form-buscar df-center-collum">
+            <h2>Buscar livro</h2>
+
+            <label>Id Livro:</label>
+            <input type="text" id="identificador_livro" name="identificador_livro">
+            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+        </form>
+        <form action="" method="post" class="form-buscar df-center-collum">
+            <label>Nome Livro:</label>
+            <select name="livro_escolhido" id="livro_escolhido">
+                <option value="">-- Selecione --</option>
+                {% for escolha in titulos %}
+                <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
+                {% endfor %}
+            </select>
+            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+        </form>
+        <form action="" method="post" class="form-buscar df-center-collum">
+            <label>ISBN:</label>
+            <input type="text" id="isbn_livro" name="isbn_livro">
+
+            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+        </form>
+    </div>
+    <div class="shield d-flex-center">
+        <table class="info-buscar">
+            <tr>
+                <th>Id livro</th>
+                <td>{{ livro.id_livro }}</td>
+            </tr>
+            <tr>
+                <th>Título</th>
+                <td>{{ livro.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Gênero</th>
+                <td>{{ genero.genero }}</td>
+            </tr>
+            <tr>
+                <th>Editora</th>
+                <td>{{ editora }}</td>
+            </tr>
+            <tr>
+                <th>ISBN</th>
+                <td>{{ livro.ISBN }}</td>
+            </tr>
+        </table>
+        <table class="info-buscar">
+            <tr>
+                <th>Data publicação</th>
+                <td>{{ livro.data_publicacao}}</td>
+            </tr>
+            <tr>
+                <th>Data de recebimento</th>
+                <td>{{ livro.data_entrada }}</td>
+            </tr>
+            <tr>
+                <th>Câmpus</th>
+                <td>{{ campus.nome}}</td>
+            </tr>
+            <tr>
+                <th>Setor</th>
+                <td>{{ locallivro.setor }}</td>
+            </tr>
+            <tr>
+                <th>Estante</th>
+                <td>{{ locallivro.estante }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

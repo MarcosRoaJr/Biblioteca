@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
+</head>
+
+{% include "navbar-cadastro.html" %}
+
+<div class="d-flex-center">
+    <div class="d-flex-center shield">
+        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+            <h1>Cadastrar autor</h1>
+
+            <label for="nome">Nome do autor:</label>
+            <input type="text" id="nome" name="nome" required><br>
+            <label for="nome">Sobrenome do autor:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <button class="botao-envio">Cadastrar</button>
+
+            <table class="tabela-universal">
+                <tr>
+                    <th>Id autor</th>
+                    <th>Nome do autor</th>
+                </tr>
+                {% for autor in autor %}
+                <tr>
+                    <td>{{ autor.id_autor }}</td>
+                    <td>{{ autor.nome_completo }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

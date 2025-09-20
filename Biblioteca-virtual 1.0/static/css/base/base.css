@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: arial;
+}
+
+body {
+    background-color: #1d1d1d;
+    color: #ffffff;
+}

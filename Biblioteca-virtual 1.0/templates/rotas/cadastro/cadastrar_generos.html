@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
+    <link rel="stylesheet" href="../../../static/css/paginas/cadastrargeneros.css">
+</head>
+
+{% include "navbar-cadastro.html" %}
+
+<div class="d-flex-center">
+    <div class="d-flex-center d-flex-collum shield">
+        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+            <h1>Cadastrar genero</h1>
+
+            <label for="nome">Genero:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <button class="botao-envio">Cadastrar</button>
+        </form>
+        <table class="tabela-universal">
+            <tr>
+                <th>Id gênero</th>
+                <th>Gênero</th>
+            </tr>
+            {% for genero in genero %}
+            <tr>
+                <td>{{ genero.id_genero }}</td>
+                <td>{{ genero.genero }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

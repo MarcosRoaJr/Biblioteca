@@ -1,0 +1,49 @@
+.d-flex {
+    display: flex;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex-collum {
+    display: flex;
+    flex-direction: column;
+}
+
+.df-center-collum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.shield{
+    margin: 2rem;
+    background-color: #333333;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+}
+
+.tabela-universal {
+    font-family: Arial, sans-serif;
+    margin-right: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.tabela-universal tr th,
+.tabela-universal tr td {
+    border: 1px solid #e9e9e9;
+    padding: 10px;
+    text-align: center;
+    width: 30rem;
+    background-color: #464646;
+}
+
+.tabela-universal tr th {
+    background-color: #333;
+    color: white;
+    width: 20rem;
+}

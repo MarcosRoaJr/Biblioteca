@@ -1,0 +1,54 @@
+.botao-entrada {
+    background-color: #c7c7c7;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border: none;
+    width: 10rem;
+    transition: 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.botao-entrada:hover {
+    background-color: #eeeeee;
+}
+
+.botao-entrada:active {
+    transform: scale(0.90);
+}
+
+.botao-envio {
+    background-color: #4caf50;
+    padding: 0.6rem;
+    border-radius: 0.8rem;
+    border: none;
+    width: 8rem;
+    transition: 0.3s ease;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.botao-envio:hover {
+    background-color: #307534;
+}
+
+.botao-envio:active {
+    transform: scale(0.90);
+}
+.botao-cancelamento {
+    background-color: #af4c4c;
+    padding: 0.6rem;
+    border-radius: 0.8rem;
+    border: none;
+    width: 8rem;
+    transition: 0.3s ease;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.botao-cancelamento:hover {
+    background-color: #753030;
+}
+
+.botao-cancelamento:active {
+    transform: scale(0.90);
+}

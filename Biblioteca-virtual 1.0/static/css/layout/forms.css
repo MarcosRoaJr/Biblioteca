@@ -1,0 +1,12 @@
+.form-buscar input ,.form-buscar select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    margin: .25rem;
+}
+
+.form-buscar label {
+    margin: .1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}

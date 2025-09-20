@@ -1,0 +1,11 @@
+.tabela-emprestimo {
+    background-color: #3d3d3d;
+    padding: 0.5rem;
+}
+
+.tabela-emprestimo tr td,
+.tabela-emprestimo tr th  {
+    border: 1px solid black;
+    text-align: center;
+    padding: .5rem;
+}

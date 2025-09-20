@@ -1,0 +1,13 @@
+.shield {
+    width: 30rem;
+}
+
+input, label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    width: 20rem;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<style>
+    .navbar-cadastro {
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #444444;
+        padding-bottom: 1.5rem;
+    }
+</style>
+
+<body>
+    <div class="navbar-cadastro">
+        <ul class="navbar-links d-flex-center">
+            <li class="navbar-item"><a href="/cadastrolocalidade">Localidade</a></li>
+            <li class="navbar-item"><a href="/cadastroeditora">Editora</a></li>
+            <li class="navbar-item"><a href="/cadastroautor">Autores</a></li>
+            <li class="navbar-item"><a href="/cadastrogenero">Gêneros</a></li>
+            <li class="navbar-item"><a href="/cadastro">Livros</a></li>
+        </ul>
+    </div>
+    <main class="conteudo">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>

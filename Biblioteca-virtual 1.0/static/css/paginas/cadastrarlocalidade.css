@@ -1,0 +1,23 @@
+.form-campus {
+    background-color: rgb(29, 29, 29);
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+
+}
+
+input, label, select {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border:none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.10rem;
+    width: 17rem;
+}
+
+.form-cadastro {
+    background-color: rgb(29, 29, 29);
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    margin-left:5rem;
+}
