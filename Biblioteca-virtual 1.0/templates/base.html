@@ -16,11 +16,11 @@
             <a href="/home">Biblioteca</a>
         </div>
         <ul class="navbar-links d-flex-center">
-            <li class="navbar-item"><a href="/cadastro">Cadastro</a></li>
-            <li class="navbar-item"><a href="/buscar">Buscar</a></li>
-            <li class="navbar-item"><a href="/cadastrar_usuario">Cadastrar usuario</a></li>
-            <li class="navbar-item"><a href="/emprestimo">Fazer emprestimo</a></li>
-            <li class="navbar-item"><a href="/buscaremprestimo">Buscar emprestimo</a></li>
+            <li class="navbar-item"><a href="/buscar"><i class="bi-book"></i> Buscar</a></li>
+            <li class="navbar-item"><a href="/buscaremprestimo"><i class="bi-journal-text"></i> Buscar emprestimo</a></li>
+            {% if nivel >= 3 %}<li class="navbar-item"><a href="/cadastro">Cadastro</a></li>{% endif %}
+            {% if nivel >= 3 %}<li class="navbar-item"><a href="/cadastrar_usuario">Cadastrar usuario</a></li>{% endif%}
+            {% if nivel >= 3 %}<li class="navbar-item"><a href="/emprestimo">Fazer emprestimo</a></li>{% endif %}
         </ul>
         <div class="navbar-login d-flex-center">
             <a href="/usuario" class="bi bi-person-fill"> Usuario </a>

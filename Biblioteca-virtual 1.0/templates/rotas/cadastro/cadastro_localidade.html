@@ -13,7 +13,7 @@
             <h1>Cadastrar câmpus</h1>
 
             <label for="titulo">Nome do Câmpus:</label>
-            <input type="text" id="titulo" name="titulo" required><br>
+            <input type="text" id="campus" name="campus" required><br>
 
             <button class="botao-envio">Cadastrar</button>
         </form>
@@ -24,11 +24,19 @@
 
 
             <label for="titulo">Livro:</label>
-            <input type="text" id="titulo" name="titulo" required><br>
+            <select name="livro_escolhido" id="livro_escolhido">
+                <option value="">-- Selecione --</option>
+                {% for escolha in titulos %}
+                <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
+                {% endfor %}
+            </select>
 
             <label for="titulo">Câmpus:</label>
             <select name="" id="">
                 <option value="">-- Selecione --</option>
+                {% for a in campus_l %}
+                <option value="{{ a.id_campus }}">{{ a.nome }}</option>
+                {% endfor %}
             </select>
 
             <label for="titulo">Setor</label>

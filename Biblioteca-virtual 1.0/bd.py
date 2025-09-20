@@ -137,9 +137,19 @@ def formatar_isbn(isbn: str) -> str:
 
 # Busca as informações do usuario
 # função em potencial para trocar o nome, ver depois de não é ideal ver a troca dos nomes
-def verificar_usuario(usuario_id, senha):
+def verificar_usuario_id(usuario_id, senha):
     conectar = mysql.connection.cursor()
     conectar.execute("SELECT * FROM usuarios WHERE id_usuario = %s; ", (usuario_id,))
+    listar = conectar.fetchone()
+    conectar.close()
+
+    if not listar:
+        return None
+    return listar if listar['senha'] == senha else None
+
+def verificar_usuario_nome(usuario, senha):
+    conectar = mysql.connection.cursor()
+    conectar.execute("SELECT * FROM usuarios WHERE nome = %s; ", (usuario,))
     listar = conectar.fetchone()
     conectar.close()
 
@@ -198,10 +208,18 @@ def buscar_locallivro(id_livro: int):
 
     return listar
 
-def buscar_campus(id_capus: int):
+def buscar_campus_id(id_capus: int):
     conectar = mysql.connection.cursor()
     conectar.execute("SELECT * FROM localidade_livro WHERE id_campus = %s", (id_capus,))
     listar = conectar.fetchone()
+    conectar.close()
+
+    return listar
+
+def buscar_campus():
+    conectar = mysql.connection.cursor()
+    conectar.execute("SELECT * FROM localidade_livro")
+    listar = conectar.fetchall()
     conectar.close()
 
     return listar
@@ -274,3 +292,9 @@ def buscar_usuario_id(id_usuario: int):
     conectar.close()
 
     return listar
+
+def criar_campus(nome):
+    conectar = mysql.connection.cursor()
+    conectar.execute("INSERT INTO localidade_livro (nome) VALUES (%s)", (nome,)) 
+    mysql.connection.commit()
+    conectar.close()

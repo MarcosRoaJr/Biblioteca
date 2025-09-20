@@ -61,7 +61,14 @@ def cadastro_autor():
 
 @app.route("/cadastrolocalidade", methods=["GET", "POST"])
 def cadastro_localidade():
-    return render_template("rotas/cadastro/cadastro_localidade.html", show_navbar=True)
+    titulos = bd.buscar_livro_nome()
+    campus_lista = bd.buscar_campus()
+    if request.method == "POST":
+        campus = request.form.get("campus")
+        if campus:
+            bd.criar_campus(campus)
+        
+    return render_template("rotas/cadastro/cadastro_localidade.html", show_navbar=True, campus_l=campus_lista, titulos=titulos)
 
 # Rota para cadastro de livros
 # Verificar se não é ideal trocar para um nome melhor 
@@ -95,7 +102,7 @@ def buscar():
                 genero = bd.buscar_genero(idgenero)
                 editora = bd.buscar_editora(ideditora)
                 if locallivro:
-                    campus = bd.buscar_campus(int(locallivro["id_campus"]))
+                    campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
                 else:
                     campus = None
         elif idlivro:
@@ -108,7 +115,7 @@ def buscar():
                 genero = bd.buscar_genero(idgenero)
                 editora = bd.buscar_editora(ideditora)
                 if locallivro:
-                    campus = bd.buscar_campus(int(locallivro["id_campus"]))
+                    campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
                 else:
                     campus = None
         elif isbnlivro:
@@ -120,7 +127,7 @@ def buscar():
                     r = bd.retornar_idgenero(isbn_idlivro)
                     e = bd.retornar_ideditora(isbn_idlivro)
                     t = bd.buscar_locallivro(isbn_idlivro)
-                    o = bd.buscar_campus(isbn_idlivro)
+                    o = bd.buscar_campus_id(isbn_idlivro)
                     if r is not None:
                         genero = bd.buscar_genero(r)
                         editora = bd.buscar_editora(e)
@@ -165,10 +172,29 @@ def cadastrar_usuario():
 def login():
     if request.method == "POST":
         usuario_id = request.form.get("usuario")
+        usuario = request.form.get("usuario")
         senha = request.form.get("senha")
 
-        if bd.verificar_usuario(usuario_id, senha):
-            user = bd.verificar_usuario(usuario_id, senha)
+        if bd.verificar_usuario_id(usuario_id, senha):
+            user = bd.verificar_usuario_id(usuario_id, senha)
+            if user:
+                # Essa parte aqui foi feita para guardar os usuarios    
+                dn = user.get("data_nascimento")
+                dn_fmt = dn.strftime("%d/%m/%Y") if dn else None
+
+                session["user"] = {
+                    "id": user.get("id_usuario"),
+                    "nome": user.get("nome"),
+                    "data_nascimento": dn_fmt,
+                    "email": user.get("email"),
+                    "cpf": user.get("cpf"),
+                    "telefone": user.get("telefone"),
+                    "nivel_acesso": user.get("nivel_acesso")
+                }
+                return redirect(url_for('home'))
+            
+        if bd.verificar_usuario_nome(usuario, senha):
+            user = bd.verificar_usuario_nome(usuario, senha)
             if user:
                 # Essa parte aqui foi feita para guardar os usuarios    
                 dn = user.get("data_nascimento")
