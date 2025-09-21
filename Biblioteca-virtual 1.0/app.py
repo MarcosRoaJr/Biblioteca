@@ -47,15 +47,35 @@ def emprestimo():
 @app.route("/cadastrogenero", methods=["GET", "POST"])
 def cadastro_genero():
     genero = bd.buscar_todos_generos()
+    if request.method == "POST":
+        genero_c = request.form.get("genero")
+
+        bd.criar_genero(genero_c)
+        return redirect(url_for('cadastro_genero'))
     return render_template("rotas/cadastro/cadastrar_generos.html", show_navbar=True, genero=genero)
 
 @app.route("/cadastroeditora", methods=["GET", "POST"])
 def cadastro_editora():
+    if request.method == "POST":
+        Nome = request.form.get("nome")
+        Telefone = request.form.get("telefone")
+        Endereço = request.form.get("endereco")
+        Bairro = request.form.get("bairro")
+        Cidade= request.form.get("cidade")
+        Cep = request.form.get("cep")
+        cnpj = request.form.get("cnpj")
+
+        bd.criar_editora(Nome, Telefone, Endereço, Bairro, Cidade, Cep, cnpj)
     return render_template("rotas/cadastro/cadastro_editora.html", show_navbar=True)
 
 @app.route("/cadastroautor", methods=["GET", "POST"])
 def cadastro_autor():
     autor = bd.buscar_todos_autores()
+    if request.method == "POST":
+        nome = request.form.get("nome")
+        sobrenome = request.form.get("sobrenome")
+        bd.criar_autor(nome, sobrenome)
+
     return render_template("rotas/cadastro/cadastrar_autores.html", show_navbar=True, autor=autor)
 # Rota para pagina inicial
 
@@ -79,9 +99,16 @@ def cadastro_localidade():
 # Rota para cadastro de livros
 # Verificar se não é ideal trocar para um nome melhor 
 @app.route("/cadastro", methods=["GET", "POST"])
-def cadastro():
-    livro = bd.buscar_todos_livros()
-    return render_template("rotas/cadastro/cadastro.html", show_navbar=True, livro=livro)
+def cadastro():        
+    return render_template("rotas/cadastro/cadastro.html", show_navbar=True)
+
+@app.route("/cadastrolivros", methods=["GET", "POST"])
+def cadastrolivros():
+    todos_generos = bd.buscar_todos_generos()
+    todos_autores = bd.buscar_todos_autores()
+    todos_editoras = bd.buscar_editora()
+    campus_lista = bd.buscar_campus()
+    return render_template("rotas/cadastro/cadastrolivros.html", show_navbar=True, autores=todos_autores, generos=todos_generos, editora=todos_editoras, campus=campus_lista)
 
 # Rota para buscar as informações de livros
 @app.route("/buscar", methods=["GET", "POST"])
@@ -106,7 +133,7 @@ def buscar():
                 ideditora = bd.retornar_ideditora(int(escolhido))
 
                 genero = bd.buscar_genero(idgenero)
-                editora = bd.buscar_editora(ideditora)
+                editora = bd.buscar_editora_id(ideditora)
                 if locallivro:
                     campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
                 else:
@@ -119,7 +146,7 @@ def buscar():
                 locallivro = bd.buscar_locallivro(int(idlivro))
 
                 genero = bd.buscar_genero(idgenero)
-                editora = bd.buscar_editora(ideditora)
+                editora = bd.buscar_editora_id(ideditora)
                 if locallivro:
                     campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
                 else:
@@ -136,7 +163,7 @@ def buscar():
                     o = bd.buscar_campus_id(isbn_idlivro)
                     if r is not None:
                         genero = bd.buscar_genero(r)
-                        editora = bd.buscar_editora(e)
+                        editora = bd.buscar_editora_id(e)
                         locallivro = t
                         campus = o
 

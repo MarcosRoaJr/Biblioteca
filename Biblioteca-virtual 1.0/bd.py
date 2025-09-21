@@ -4,7 +4,7 @@ mysql = MySQL()
 
 def init_app(app):
     app.config['MYSQL_HOST'] = 'localhost'
-    app.config['MYSQL_PORT'] = 3307
+    app.config['MYSQL_PORT'] = 3306
     app.config['MYSQL_USER'] = 'root'
     app.config['MYSQL_PASSWORD'] = ''
     app.config['MYSQL_DB'] = 'biblioteca_virtual'
@@ -30,7 +30,7 @@ def retornar_ideditora(identificador: int):
     conectar.close()
     return row["id_editora"] if row else None
 
-def buscar_editora(identificador: int):
+def buscar_editora_id(identificador: int):
     conectar = mysql.connection.cursor()
     conectar.execute("SELECT * FROM editora WHERE id_editora = %s;", (identificador,))
     row = conectar.fetchone()
@@ -303,3 +303,46 @@ def criar_campus(nome):
     conectar.execute("INSERT INTO localidade_livro (nome) VALUES (%s)", (nome,)) 
     mysql.connection.commit()
     conectar.close()
+
+def criar_editora(Nome, Telefone, Endereço, Bairro, Cidade, Cep, CNPJ):
+    conectar = mysql.connection.cursor()
+    conectar.execute("INSERT INTO editora (Nome, Telefone, Endereço, Bairro, Cidade, Cep, CNPJ) VALUES (%s, %s, %s, %s, %s, %s, %s)", (Nome, Telefone, Endereço, Bairro, Cidade, Cep, CNPJ,))
+    mysql.connection.commit()
+    conectar.close()
+
+def criar_autor(nome, sobrenome):
+    conectar = mysql.connection.cursor()
+    conectar.execute("INSERT INTO autor (nome, sobrenome) VALUES (%s, %s)", (nome, sobrenome,)) 
+    mysql.connection.commit()
+    conectar.close()
+
+def criar_genero(genero):
+    conectar = mysql.connection.cursor()
+    conectar.execute("INSERT INTO genero (genero) VALUES (%s)", (genero,)) 
+    mysql.connection.commit()
+    conectar.close()
+
+def buscar_editora():
+    conectar = mysql.connection.cursor()
+    conectar.execute("SELECT * FROM editora")
+    row = conectar.fetchall()
+    conectar.close()
+    return row
+
+def criar_livro(titulo, isbn, id_editora, publicacao, descricao, genero_id, setor, estante, id_campus, autor_id):
+    try:
+        with mysql.connection.cursor() as conectar:
+            conectar.execute(
+                "INSERT INTO livro (titulo, ISBN, id_editora, data_publicacao, data_entrada, descricao) "
+                "VALUES (%s, %s, %s, %s, CURDATE(), %s)",
+                (titulo, isbn, id_editora, publicacao, descricao),
+            )
+            id_livro = conectar.lastrowid
+
+            conectar.execute("INSERT INTO livro_genero (id_livro, id_genero) VALUES (%s, %s)", (id_livro, genero_id))
+            conectar.execute("INSERT INTO livro_autor (id_livro, id_autor) VALUES (%s, %s)", (id_livro, autor_id))
+            conectar.execute("INSERT INTO posicao_livro (setor, estante, id_campus, id_livro) VALUES (%s, %s, %s, %s)", (setor, estante, id_campus, id_livro),)
+            mysql.connection.commit()
+    except Exception:
+            mysql.connection.rollback()
+            raise  # propaga o erro para quem chamou tratar ou registrar

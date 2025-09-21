@@ -4,44 +4,7 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastro.css">
+    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarlocalidade.css">
 </head>
 {% include "navbar-cadastro.html" %}
-<div class="d-flex-center">
-    <div class="shield">
-        <h1>Cadastrar livro</h1>
-        <form action="" method="post" class=" d-flex-collum">
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" required><br>
-
-            <label for="autor">Autor:</label>
-            <input type="text" id="autor" name="autor" required><br>
-
-            <label for="genero">Gênero:</label>
-            <input type="text" id="genero" name="genero" required><br>
-
-            <label for="isbn">ISBN:</label>
-            <input type="text" id="isbn" name="isbn" required><br>
-
-            <label for="isbn">Editora:</label>
-            <input type="text" id="isbn" name="isbn" required><br>
-
-            <button class="botao-envio">Cadastrar</button>
-        </form>
-        <table class="tabela-universal">
-            <tr>
-                <th>Id</th>
-                <th>ISBN</th>
-                <th>Titulo</th>
-            </tr>
-            {% for livro in livro %}
-            <tr>
-                <td>{{ livro.id_livro }}</td>
-                <td>{{ livro.ISBN }}</td>
-                <td>{{ livro.titulo }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-</div>
 {% endblock %}
