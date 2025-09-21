@@ -21,8 +21,6 @@
     <div class="d-flex-center">
         <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
             <h1>Local do livro:</h1>
-
-
             <label for="titulo">Livro:</label>
             <select name="livro_escolhido" id="livro_escolhido">
                 <option value="">-- Selecione --</option>
@@ -30,9 +28,8 @@
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-
             <label for="titulo">Câmpus:</label>
-            <select name="" id="">
+            <select name="campus_escolhido" id="">
                 <option value="">-- Selecione --</option>
                 {% for a in campus_l %}
                 <option value="{{ a.id_campus }}">{{ a.nome }}</option>
@@ -40,10 +37,10 @@
             </select>
 
             <label for="titulo">Setor</label>
-            <input type="text" id="titulo" name="titulo" required><br>
+            <input type="text" id="setor" name="setor" required><br>
 
             <label for="titulo">Estante</label>
-            <input type="text" id="titulo" name="titulo" required><br>
+            <input type="text" id="estante" name="estante" required><br>
 
             <button class="botao-envio">Cadastrar</button>
         </form>

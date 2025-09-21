@@ -63,7 +63,13 @@ def cadastro_autor():
 def cadastro_localidade():
     titulos = bd.buscar_livro_nome()
     campus_lista = bd.buscar_campus()
+    campus_escolhido = request.form.get("campus_escolhido") 
+    livro_escolhido = request.form.get("livro_escolhido")
+    setor = request.form.get("setor")
+    estante = request.form.get("estante")
+
     if request.method == "POST":
+        bd.criar_posicaolivro(setor, estante, campus_escolhido, livro_escolhido)
         campus = request.form.get("campus")
         if campus:
             bd.criar_campus(campus)

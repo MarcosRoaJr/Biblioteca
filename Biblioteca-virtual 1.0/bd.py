@@ -241,6 +241,11 @@ def validar_usuario(email_info,cpf_info):
 
     return existe
 
+def criar_posicaolivro(setor, estante, id_campus, id_livro):
+    conectar = mysql.connection.cursor()
+    conectar.execute("INSERT INTO posicao_livro (setor, estante, id_campus, id_livro) VALUES (%s, %s, %s, %s)",(setor, estante, id_campus, id_livro))
+    mysql.connection.commit()
+    conectar.close()
 # ==================FIM=================
 
 # Rota para buscar emprestimos
