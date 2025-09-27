@@ -3,8 +3,27 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarlocalidade.css">
-</head>
-{% include "navbar-cadastro.html" %}
+
+<div>
+    <div>
+        <h1>Cadastrar:</h1>
+        <ul>
+            <li>
+                <a href="/cadastrolivros"><i> Livro</i></a>
+            </li>
+            <li>
+                <a href="/cadastroautor"><i> Autores</i></a>
+            </li>
+            <li>
+                <a href="/cadastroeditora"><i> Editora</i></a>
+            </li>
+            <li>
+                <a href="/cadastrolocalidade"><i> Localidade</i></a>
+            </li>
+            <li>
+                <a href="/cadastrogenero"><i> Generos</i></a>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock %}

@@ -3,15 +3,13 @@
 
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
-</head>
+
 
 {% include "navbar-cadastro.html" %}
 
-<div class="d-flex-center">
-    <div class="d-flex-center shield">
-        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+<div>
+    <div>
+        <form action="" method="post">
             <h1>Cadastrar autor</h1>
 
             <label for="nome">Nome do autor:</label>
@@ -19,9 +17,9 @@
             <label for="nome">Sobrenome do autor:</label>
             <input type="text" id="sobrenome" name="sobrenome" required><br>
 
-            <button class="botao-envio">Cadastrar</button>
+            <button>Cadastrar</button>
 
-            <table class="tabela-universal">
+            <table>
                 <tr>
                     <th>Id autor</th>
                     <th>Nome do autor</th>

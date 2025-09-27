@@ -3,24 +3,21 @@
 
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrargeneros.css">
-</head>
+
 
 {% include "navbar-cadastro.html" %}
 
-<div class="d-flex-center">
-    <div class="d-flex-center d-flex-collum shield">
-        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+<div>
+    <div>
+        <form action="" method="post">
             <h1>Cadastrar genero</h1>
 
             <label for="nome">Genero:</label>
             <input type="text" id="genero" name="genero" required><br>
 
-            <button class="botao-envio">Cadastrar</button>
+            <button>Cadastrar</button>
         </form>
-        <table class="tabela-universal">
+    <table>
             <tr>
                 <th>Id gênero</th>
                 <th>Gênero</th>

@@ -3,19 +3,17 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarlocalidade.css">
-</head>
+
 {% include "navbar-cadastro.html" %}
-<div class="d-flex-center shield">
-    <div class="d-flex-center">
-        <form action="" method="post" class="form-campus d-flex-center d-flex-collum">
+<div>
+    <div>
+        <form action="" method="post">
             <h1>Cadastrar câmpus</h1>
 
             <label for="titulo">Nome do Câmpus:</label>
             <input type="text" id="campus" name="campus" required><br>
 
-            <button class="botao-envio">Cadastrar</button>
+            <button>Cadastrar</button>
         </form>
     </div>
 </div>

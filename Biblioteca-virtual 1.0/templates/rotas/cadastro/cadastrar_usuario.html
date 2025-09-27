@@ -3,65 +3,61 @@
 
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarusuario.css">
-</head>
-<div class="cadastro d-flex-center">
+
+<div>
     <h2>Cadastro usuario:</h2>
-    <form class="d-flex-center" action="/cadastrar_usuario" method="post" id="submit">
-        <div class="shield d-flex-center">
-            <div class="">
-                <div class="cadastro-shield">
+    <form action="/cadastrar_usuario" method="post" id="submit">
+        <div>
+            <div>
+                <div>
                     <label for="">Nome</label>
                     <input type="text" name="Nome" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Email</label>
                     <input type="text" name="Email" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Telefone</label>
                     <input type="text" name="Telefone" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Data de nascimento</label>
                     <input type="date" name="Data_nascimento" required>
                 </div>
             </div>
-            <div class="cadastro-container">
-                <div class="cadastro-shield">
+            <div>
+                <div>
                     <label for="">CPF</label>
                     <input type="text" name="CPF" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Senha</label>
                     <input type="text" name="Senha" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Confirmar Senha</label>
                     <input type="text" name="c_Senha" required>
                 </div>
-                <div class="cadastro-shield">
+                <div>
                     <label for="">Nivel de acesso</label>
                     <input type="number" name="lvl_acess" required>
                 </div>
             </div>
         </div>
     </form>
-    <button id="botao" class="botao-envio">Cadastrar</button>
+    <button id="botao">Cadastrar</button>
     {% if msg == True %}
-    <p class="notificacao-cadastro d-flex-center">Usuario cadastrado!</p>
+    <p>Usuario cadastrado!</p>
     {% elif msg == False %}
-    <p class="notificacao-erro d-flex-center">Houve um erro!</p>
+    <p>Houve um erro!</p>
     {% endif %}
-    <div class="sumir" id="meuAlert">
-        <div class="alert-container">
+    <div id="meuAlert">
+        <div>
             <p>Você irá criar um usuario deseja continuar?</p>
-            <div class="d-flex-center">
-                <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit"
-                    style="margin-right: 0.5rem;" class="botao-envio">Sim</button>
-                <button onclick="fecharAlert()" value="negar" name="negado" class="botao-cancelamento"
-                    style="margin-left: 0.5rem;">Não</button>
+            <div>
+                <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit">Sim</button>
+                <button onclick="fecharAlert()" value="negar" name="negado">Não</button>
             </div>
         </div>
     </div>

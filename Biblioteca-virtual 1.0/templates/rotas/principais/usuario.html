@@ -3,12 +3,12 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/usuario.css">
-</head>
-<div class="d-flex-center">
-    <div class="shield">
-        <ul class="info-usuario">
+<!-- <head>
+
+</head> -->
+<div>
+    <div>
+        <ul>
             <li>Usuario: {{ usuario.nome }}</li>
             <li>Cracha: {{ usuario.id }}</li>
             <li>Email: {{ usuario.email }}</li>
@@ -19,42 +19,42 @@
         </ul>
     </div>
     {% if nivel >= 3 %}
-    <div class="shield">
+    <div>
         <h2>Alterar informações:</h2>
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>Nome do usuario:</label>
             <input type="text" name="nome" id="nome" placeholder="{{ usuario.nome }}">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
 
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>Email:</label>
             <input type="text" name="email" id="email" placeholder="{{ usuario.email }}">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
 
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>Data de Nascimento:</label>
             <input type="date" name="data_nascimento" id="data_nascimento">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
 
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>CPF:</label>
             <input type="text" name="cpf" id="cpf" placeholder="{{ usuario.cpf }}">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
 
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>Telefone:</label>
             <input type="tel" name="telefone" id="telefone" placeholder="{{ usuario.telefone }}">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
 
         <form action="{{ url_for('usuario') }}" method="POST">
             <label>Nivel de acesso:</label>
             <input type="number" name="nivel_acesso" id="nivel_acesso" placeholder="{{ usuario.nivel_acesso }}">
-            <button class="botao-envio" type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
         </form>
     </div>
     {% endif %}

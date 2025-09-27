@@ -1,80 +1,123 @@
 {% extends "base.html" %}
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
-
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/buscar.css">
-</head>
-<div class="d-flex-center">
-    <div class="shield df-center-collum">
-        <form action="" method="post" class="form-buscar df-center-collum">
-            <h2>Buscar livro</h2>
-
-            <label>Id Livro:</label>
-            <input type="text" id="identificador_livro" name="identificador_livro">
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+<div>
+    <div>
+        <h1>Buscar livro:</h1>
+        <form action="" method="post">
+            <label for="">ID do livro:</label>
+            <input type="text" name="idlivro" id="idlivro">
+            <button>Enviar</button>
         </form>
-        <form action="" method="post" class="form-buscar df-center-collum">
-            <label>Nome Livro:</label>
-            <select name="livro_escolhido" id="livro_escolhido">
+        <form action="" method="post">
+            <label for="">Titulo:</label>
+            <select name="titulo_escolhido" id="titulo_escolhido">
                 <option value="">-- Selecione --</option>
-                {% for escolha in titulos %}
+                {% for escolha in titulo %}
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+            <button>Enviar</button>
         </form>
-        <form action="" method="post" class="form-buscar df-center-collum">
-            <label>ISBN:</label>
-            <input type="text" id="isbn_livro" name="isbn_livro">
-
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+        <form action="" method="post">
+            <label for="">ISBN:</label>
+            <input type="text" name="isbn" id="isbn">
+            <button>Enviar</button>
         </form>
     </div>
-    <div class="shield d-flex-center">
-        <table class="info-buscar">
-            <tr>
-                <th>Id livro</th>
-                <td>{{ livro.id_livro }}</td>
-            </tr>
-            <tr>
-                <th>Título</th>
-                <td>{{ livro.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Gênero</th>
-                <td>{{ genero.genero }}</td>
-            </tr>
-            <tr>
-                <th>Editora</th>
-                <td>{{ editora }}</td>
-            </tr>
-            <tr>
-                <th>ISBN</th>
-                <td>{{ livro.ISBN }}</td>
-            </tr>
+    <div>
+    <table>
+            <tbody>
+                {% if livro %}
+                <tr>
+                    <th>Id livro</th>
+                    <td>{{ livro.id_livro }}</td>
+                </tr>
+                <tr>
+                    <th>Título</th>
+                    <td>{{ livro.titulo }}</td>
+                </tr>
+                <tr>
+                    <th>Gênero</th>
+                    <td>{{ livro.generos }}</td>
+                </tr>
+                <tr>
+                    <th>Autor</th>
+                    <td>{{ livro.autores }}</td>
+                </tr>
+                <tr>
+                    <th>ISBN</th>
+                    <td>{{ livro.ISBN }}</td>
+                </tr>
+                <tr>
+                    <th>Nº de exemplares</th>
+                    <td>{{ livro.qtd_exemplares }}</td>
+                </tr>
+                <tr>
+                    <th>Etiqueta</th>
+                    <td>{{ livro.etiquetas }}</td>
+                </tr>
+                <tr>
+                    <th>Data de publicação</th>
+                    <td>{{ livro.data_publicacao }}</td>
+                </tr>
+                <tr>
+                    <th>Editora</th>
+                    <td>{{ livro.editora }}</td>
+                </tr>
+                <tr>
+                    <th>Campus</th>
+                    <td>{{ livro.campus }}</td>
+                </tr>
+                <tr>
+                    <th>Estante</th>
+                    <td>{{ livro.estante }}</td>
+                </tr>
+                <tr>
+                    <th>Setor</th>
+                    <td>{{ livro.setor }}</td>
+                </tr>
+            </tbody>
         </table>
-        <table class="info-buscar">
-            <tr>
-                <th>Data publicação</th>
-                <td>{{ livro.data_publicacao}}</td>
-            </tr>
-            <tr>
-                <th>Data de recebimento</th>
-                <td>{{ livro.data_entrada }}</td>
-            </tr>
-            <tr>
-                <th>Câmpus</th>
-                <td>{{ campus.nome}}</td>
-            </tr>
-            <tr>
-                <th>Setor</th>
-                <td>{{ locallivro.setor }}</td>
-            </tr>
-            <tr>
-                <th>Estante</th>
-                <td>{{ locallivro.estante }}</td>
-            </tr>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Livro:</th>
+                    {% for a in exemplar or [] %}
+                    <td>{{ loop.index }}°</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Patrimônio:</th>
+                    {% for a in exemplar or [] %}
+                    <td>{{ a.numero_patrimonio }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Código barras:</th>
+                    {% for a in exemplar or [] %}
+                    <td>{{ a.codigo_barras }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Nº exemplar:</th>
+                    {% for a in exemplar or [] %}
+                    <td>{{ a.numero_exemplar }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Status:</th>
+                    {% for a in exemplar or [] %}
+                    <td>{{ a.status }}</td>
+                    {% endfor %}
+                </tr>
+                {% else %}
+                <tr>
+                    <th>Exemplares</th>
+                    <td>Sem exemplares cadastrados</td>
+                </tr>
+                {% endif %}
+            </tbody>
         </table>
     </div>
 </div>

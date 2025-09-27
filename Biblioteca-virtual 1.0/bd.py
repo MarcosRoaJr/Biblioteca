@@ -18,9 +18,9 @@ def init_app(app):
 def retornar_idgenero(identificador: int):
     conectar = mysql.connection.cursor()
     conectar.execute("SELECT * FROM livro_genero WHERE id_livro = %s;", (identificador,))
-    row = conectar.fetchone()
+    row = conectar.fetchall()
     conectar.close()
-    return row["id_genero"] if row else None
+    return [r["id_genero"] for r in row]
 
 # Aqui retorna o id da editora
 def retornar_ideditora(identificador: int):
@@ -171,7 +171,7 @@ def buscar_livro_id(id_livro: int):
 # Aqui ele busca livros pelo nome junto com o select
 def buscar_livro_nome():
     conectar = mysql.connection.cursor()
-    conectar.execute("SELECT * FROM livro ORDER BY titulo;")
+    conectar.execute("SELECT * FROM livro;")
     listar_lvr = conectar.fetchall()
     conectar.close()
 
@@ -188,9 +188,9 @@ def buscar_status_nome():
     
     return listar_lvr
 
-def buscar_livro_isbn(ISBN: int):
+def buscar_livro_isbn(identificador: int):
     conectar = mysql.connection.cursor()
-    conectar.execute("SELECT * FROM livro WHERE ISBN = %s;", (ISBN,))
+    conectar.execute("SELECT l.id_livro, l.titulo, l.ISBN, DATE_FORMAT(l.data_publicacao,'%%d/%%m/%%Y') AS data_publicacao, e.Nome AS editora, IFNULL(GROUP_CONCAT(DISTINCT CONCAT(a.nome,' ',a.sobrenome) ORDER BY a.sobrenome SEPARATOR ', '),'—') AS autores, IFNULL(GROUP_CONCAT(DISTINCT g.genero ORDER BY g.genero SEPARATOR ', '),'—') AS generos, COUNT(DISTINCT ex.numero_exemplar) AS qtd_exemplares, IFNULL(GROUP_CONCAT(DISTINCT ex.etiqueta ORDER BY ex.numero_exemplar SEPARATOR ', '),'—') AS etiquetas, IFNULL(pl.setor,'—') AS setor, IFNULL(pl.estante,'—') AS estante, IFNULL(loc.nome,'—') AS campus FROM livro l JOIN editora e ON l.id_editora = e.id_editora LEFT JOIN livro_autor la ON l.id_livro = la.id_livro LEFT JOIN autor a ON la.id_autor = a.id_autor LEFT JOIN livro_genero lg ON l.id_livro = lg.id_livro LEFT JOIN genero g ON lg.id_genero = g.id_genero LEFT JOIN exemplares ex ON l.id_livro = ex.id_livro LEFT JOIN posicao_livro pl ON l.id_livro = pl.id_livro LEFT JOIN localidade_livro loc ON pl.id_campus = loc.id_campus WHERE l.ISBN = %s GROUP BY l.id_livro, l.titulo, l.ISBN, data_publicacao, editora, setor, estante, campus;",(identificador,))
     listar = conectar.fetchone()
     conectar.close()
 
@@ -255,7 +255,7 @@ def buscar_emprestimo(identificador: int):
     conectar = mysql.connection.cursor()
     sql = "SELECT e.id_emprestimo, u.nome AS usuario, l.titulo AS livro, ex.numero_exemplar, ex.etiqueta, e.data_saida, e.hora_saida, e.data_prevista_devolucao, e.status_emprestimo, e.data_devolucao FROM emprestimo e JOIN usuarios u ON u.id_usuario = e.id_usuario JOIN livro_emprestimo le ON le.id_emprestimo = e.id_emprestimo JOIN exemplares ex ON ex.numero_patrimonio = le.id_numero_patrimonio JOIN livro l ON l.id_livro = ex.id_livro WHERE e.id_emprestimo = %s ORDER BY e.id_emprestimo, ex.numero_exemplar;"
     conectar.execute(sql, (identificador,))
-    emprestimo = conectar.fetchone()
+    emprestimo = conectar.fetchall()
     conectar.close()
 
     return emprestimo
@@ -264,7 +264,7 @@ def buscar_emprestimo_por_livro(identificador: int):
     conectar = mysql.connection.cursor()
     sql = "SELECT e.id_emprestimo, u.nome AS usuario, l.titulo AS livro, ex.numero_exemplar, ex.etiqueta, e.data_saida, e.hora_saida, e.data_prevista_devolucao, e.status_emprestimo, e.data_devolucao FROM emprestimo e JOIN usuarios u ON u.id_usuario = e.id_usuario JOIN livro_emprestimo le ON le.id_emprestimo = e.id_emprestimo JOIN exemplares ex ON ex.numero_patrimonio = le.id_numero_patrimonio JOIN livro l ON l.id_livro = ex.id_livro WHERE l.id_livro = %s ORDER BY e.id_emprestimo, ex.numero_exemplar;"
     conectar.execute(sql, (identificador,))
-    emprestimo = conectar.fetchone()
+    emprestimo = conectar.fetchall()
     conectar.close()
 
     return emprestimo
@@ -273,7 +273,7 @@ def buscar_emprestimo_por_usuario(identificador: int):
     conectar = mysql.connection.cursor()
     sql = "SELECT e.id_emprestimo, u.nome AS usuario, l.titulo AS livro, ex.numero_exemplar, ex.etiqueta, e.data_saida, e.hora_saida, e.data_prevista_devolucao, e.status_emprestimo, e.data_devolucao FROM emprestimo e JOIN usuarios u ON u.id_usuario = e.id_usuario JOIN livro_emprestimo le ON le.id_emprestimo = e.id_emprestimo JOIN exemplares ex ON ex.numero_patrimonio = le.id_numero_patrimonio JOIN livro l ON l.id_livro = ex.id_livro WHERE u.id_usuario = %s ORDER BY e.id_emprestimo, ex.numero_exemplar;"
     conectar.execute(sql, (identificador,))
-    emprestimo = conectar.fetchone()
+    emprestimo = conectar.fetchall()
     conectar.close()
 
     return emprestimo
@@ -343,6 +343,21 @@ def criar_livro(titulo, isbn, id_editora, publicacao, descricao, genero_id, seto
             conectar.execute("INSERT INTO livro_autor (id_livro, id_autor) VALUES (%s, %s)", (id_livro, autor_id))
             conectar.execute("INSERT INTO posicao_livro (setor, estante, id_campus, id_livro) VALUES (%s, %s, %s, %s)", (setor, estante, id_campus, id_livro),)
             mysql.connection.commit()
-    except Exception:
+    except Exception: # Isso aqui cancela qual quer erro que de para que não envie informações picotadas
             mysql.connection.rollback()
-            raise  # propaga o erro para quem chamou tratar ou registrar
+            raise
+
+def buscar_livro_new(identificador: int):
+    conectar = mysql.connection.cursor()
+    conectar.execute("SELECT l.id_livro, l.titulo, l.ISBN, DATE_FORMAT(l.data_publicacao,'%%d/%%m/%%Y') AS data_publicacao, e.Nome AS editora, IFNULL(GROUP_CONCAT(DISTINCT CONCAT(a.nome,' ',a.sobrenome) ORDER BY a.sobrenome SEPARATOR ', '),'—') AS autores, IFNULL(GROUP_CONCAT(DISTINCT g.genero ORDER BY g.genero SEPARATOR ', '),'—') AS generos, COUNT(DISTINCT ex.numero_exemplar) AS qtd_exemplares, IFNULL(GROUP_CONCAT(DISTINCT ex.etiqueta ORDER BY ex.numero_exemplar SEPARATOR ', '),'—') AS etiquetas, IFNULL(pl.setor,'—') AS setor, IFNULL(pl.estante,'—') AS estante, IFNULL(loc.nome,'—') AS campus FROM livro l JOIN editora e ON l.id_editora = e.id_editora LEFT JOIN livro_autor la ON l.id_livro = la.id_livro LEFT JOIN autor a ON la.id_autor = a.id_autor LEFT JOIN livro_genero lg ON l.id_livro = lg.id_livro LEFT JOIN genero g ON lg.id_genero = g.id_genero LEFT JOIN exemplares ex ON l.id_livro = ex.id_livro LEFT JOIN posicao_livro pl ON l.id_livro = pl.id_livro LEFT JOIN localidade_livro loc ON pl.id_campus = loc.id_campus WHERE l.id_livro = %s GROUP BY l.id_livro, l.titulo, l.ISBN, data_publicacao, editora, setor, estante, campus;",(identificador,))
+    livro = conectar.fetchone()
+    conectar.close()
+    if livro and livro.get("ISBN"):
+        livro["ISBN"] = formatar_isbn(livro["ISBN"])
+    return livro
+def buscar_exemplares_idlivro(identificador: int):
+    conectar = mysql.connection.cursor()
+    conectar.execute("SELECT numero_patrimonio, codigo_barras, numero_exemplar, status FROM exemplares WHERE id_livro = %s ORDER BY numero_exemplar;", (identificador,))
+    exemplar = conectar.fetchall()
+    conectar.close()
+    return exemplar

@@ -2,19 +2,19 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<head>
+<!-- <head>
     <link rel="stylesheet" href="../../../static/css/paginas/buscaremprestimo.css">
-</head>
+</head> -->
 
-<div class="d-flex-center df-center-collum">
-    <div class="shield df-center-collum">
-        <form action="" method="post" class="form-buscar df-center-collum">
+<div>
+    <div>
+        <form action="" method="post">
             <h2>Buscar emprestimo</h2>
             <label>ID emprestimo:</label>
             <input type="text" id="emprestimo_id" name="emprestimo_id">
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+            <button id="botao" type="submit">Procurar</button>
         </form>
-        <form action="" method="post" class="form-buscar df-center-collum">
+    <form action="" method="post">
             <label>Nome Livro:</label>
             <select name="livro_escolhido" id="livro_escolhido">
                 <option value="">-- Selecione --</option>
@@ -22,18 +22,18 @@
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+            <button id="botao" type="submit">Procurar</button>
         </form>
-        <form action="" method="post" class="form-buscar df-center-collum">
+    <form action="" method="post">
             <label>ID Usuario:</label>
             <input type="text" id="id_usuario" name="id_usuario">
-            <button id="botao" type="submit" class="botao-envio">Procurar</button>
+            <button id="botao" type="submit">Procurar</button>
         </form>
     </div>
-    <div class="shield d-flex-center">
-        <div class="shield d-flex-center">
-            <div class="shield d-flex-center">
-                <table class="tabela-emprestimo">
+    <div>
+        <div>
+            <div>
+                <table>
                     <tr>
                         <td>ID do emprestimo</td>
                         <td>Usuario</td>
@@ -47,6 +47,7 @@
                         <td>Data da deveolução</td>
                     </tr>
                     {% if emprestimo %}
+                    {% for emprestimo in emprestimo %}
                     <tr>
                         <td>{{ emprestimo.id_emprestimo }}</td>
                         <td>{{ emprestimo.usuario }}</td>
@@ -59,6 +60,7 @@
                         <th>{{ emprestimo.status_emprestimo }}</th>
                         <th>{{ emprestimo.data_devolucao }}</th>
                     </tr>
+                    {% endfor %}
                     {% else %}
                     <tr>
                         <td>Sem resultados</td>
@@ -79,9 +81,9 @@
     </div>
 </div>
 {% if nivel > 4 %}
-<div class="df-center-collum shield">
+<div>
     <h2>Alterar cadastro de emprestimo</h2>
-    <form action="" method="post" class="form-buscar df-center-collum">
+    <form action="" method="post">
 
         <label for="">Alterar Livro:</label>
         <select name="livro_escolhido" id="livro_escolhido">
@@ -103,7 +105,7 @@
         <label for="status_emprestimo">Status do emprestimo:</label>
         <select name="status_emprestimo" id="status_emprestimo">
         </select>
-        <button class="botao-envio" style="margin-top: 1rem;">Enviar</button>
+    <button style="margin-top: 1rem;">Enviar</button>
     </form>
 </div>
 {% endif %}

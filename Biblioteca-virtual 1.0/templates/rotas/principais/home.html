@@ -3,4 +3,33 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/home.css">
+</head>
+
+<main class="d-flex-center">
+    {% for livro in livro %}
+    <div class="livro-container d-flex-center d-collun">
+        <h2>{{ livro.titulo }}</h2><br>
+        <ul class="shield-livro list-none">
+            <li>
+                <label for="">Editora: {{ livro.id_editora }}</label>
+            </li>
+            <li>
+                <label for="">ISBN: {{ livro.ISBN }}</label>
+            </li>
+            <li>
+                <label for="">Data da publicação: {{ livro.data_publicacao }}</label>
+            </li>
+            <li>
+                <label for="">Data de entrada: {{ livro.data_entrada }}</label>
+            </li>
+            <li>
+                <label for="">Descrição:</label>
+            </li>
+            <li class="span"><span>{{ livro.descricao }}</span></li>
+        </ul>
+    </div>
+    {% endfor %}
+</main>
 {% endblock %}

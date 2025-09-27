@@ -1,0 +1,31 @@
+main {
+    flex-wrap: wrap;
+}
+
+.livro-container {
+    background-color: #292929;
+    width: 20rem;
+    height: 19rem;
+    margin: 1rem;
+    border-radius: .3rem;
+    color: #ffffff;
+    padding: 0.3rem;
+}
+
+.shield-livro {
+    background-color: #353535;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.shield-livro li {
+    margin-top: 0.5rem;
+}
+
+.shield-livro li.span {
+    background-color: #505050;
+    color: #000000;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}

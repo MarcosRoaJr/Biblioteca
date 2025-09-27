@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+import time
 from werkzeug.security import generate_password_hash
 from datetime import datetime
 import random
@@ -15,7 +16,8 @@ bd.init_app(app)
 # Rota para pagina inicial
 @app.route("/home", methods=["GET", "POST"])
 def home():
-    return render_template("rotas/principais/home.html", show_navbar=True)
+    livro = bd.buscar_livro_nome()
+    return render_template("rotas/principais/home.html", show_navbar=True, livro=livro)
 
 # Rota para pagina inicial
 @app.route("/buscaremprestimo", methods=["GET", "POST"])
@@ -108,66 +110,40 @@ def cadastrolivros():
     todos_autores = bd.buscar_todos_autores()
     todos_editoras = bd.buscar_editora()
     campus_lista = bd.buscar_campus()
+    if request.method == "POST":
+        titulo = request.form.get("titulo")
+        isbn = request.form.get("isbn")
+        id_editora = request.form.get("editora_escolhido")
+        publicacao = request.form.get("data_publicacao")
+        descricao = request.form.get("descricao")
+        genero_id = request.form.get("genero_escolhido")
+        setor = request.form.get("setor")
+        estante = request.form.get("estante")
+        id_campus = request.form.get("campus_escolhido")
+        autor_id = request.form.get("autor_escolhido")
+
+        bd.criar_livro(titulo, isbn, id_editora, publicacao, descricao, genero_id, setor, estante, id_campus, autor_id)
     return render_template("rotas/cadastro/cadastrolivros.html", show_navbar=True, autores=todos_autores, generos=todos_generos, editora=todos_editoras, campus=campus_lista)
 
 # Rota para buscar as informações de livros
 @app.route("/buscar", methods=["GET", "POST"])
 def buscar():
+    titulo = bd.buscar_livro_nome()
     livro = None
-    titulos = bd.buscar_livro_nome()
-    genero = None
-    editora = None
-    campus = None
-    locallivro = None
-
+    exemplar = None
     if request.method == "POST":
-        isbnlivro = (request.form.get("isbn_livro") or "").strip()
-        idlivro = (request.form.get("identificador_livro") or "").strip()
-        escolhido = (request.form.get("livro_escolhido") or "").strip()
-
-        if escolhido:
-            if escolhido.isdigit():
-                livro = bd.buscar_livro_id(int(escolhido))
-                locallivro = bd.buscar_locallivro(int(escolhido))
-                idgenero = bd.retornar_idgenero(int(escolhido))
-                ideditora = bd.retornar_ideditora(int(escolhido))
-
-                genero = bd.buscar_genero(idgenero)
-                editora = bd.buscar_editora_id(ideditora)
-                if locallivro:
-                    campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
-                else:
-                    campus = None
-        elif idlivro:
-            if idlivro.isdigit():
-                livro = bd.buscar_livro_id(int(idlivro))
-                idgenero = bd.retornar_idgenero(int(idlivro))
-                ideditora = bd.retornar_ideditora(int(idlivro))
-                locallivro = bd.buscar_locallivro(int(idlivro))
-
-                genero = bd.buscar_genero(idgenero)
-                editora = bd.buscar_editora_id(ideditora)
-                if locallivro:
-                    campus = bd.buscar_campus_id(int(locallivro["id_campus"]))
-                else:
-                    campus = None
-        elif isbnlivro:
-            if isbnlivro.isdigit():
-                livro = bd.buscar_livro_isbn(int(isbnlivro))
-                isbn_idlivro = bd.retornar_idisbn(int(isbnlivro))
-
-                if isbn_idlivro is not None:
-                    r = bd.retornar_idgenero(isbn_idlivro)
-                    e = bd.retornar_ideditora(isbn_idlivro)
-                    t = bd.buscar_locallivro(isbn_idlivro)
-                    o = bd.buscar_campus_id(isbn_idlivro)
-                    if r is not None:
-                        genero = bd.buscar_genero(r)
-                        editora = bd.buscar_editora_id(e)
-                        locallivro = t
-                        campus = o
-
-    return render_template("rotas/principais/buscar.html", show_navbar=True, campus=campus, locallivro=locallivro, editora=editora,livro=livro,titulos=titulos, genero=genero)
+        idlivro = request.form.get("idlivro")
+        titulo_escolhido = request.form.get("titulo_escolhido")
+        isbn = request.form.get("isbn")
+        if idlivro:
+            livro = bd.buscar_livro_new(idlivro)
+            exemplar = bd.buscar_exemplares_idlivro(idlivro)
+        elif titulo_escolhido:
+            livro = bd.buscar_livro_new(titulo_escolhido)
+            exemplar = bd.buscar_exemplares_idlivro(titulo_escolhido)
+        elif isbn:
+            livro = bd.buscar_livro_isbn(isbn)
+    return render_template("rotas/principais/buscar.html", show_navbar=True, livro=livro, titulo=titulo, exemplar=exemplar)
 
 
 # Rota para cadastrar o usuario
@@ -225,6 +201,9 @@ def login():
                     "nivel_acesso": user.get("nivel_acesso")
                 }
                 return redirect(url_for('home'))
+            elif not session.get("user") or not bd.verificar_usuario_id(usuario_id, senha):
+                erro = True
+                return render_template("rotas/principais/index.html", erro=erro, msg="Usuário ou senha inválidos.")
             
         if bd.verificar_usuario_nome(usuario, senha):
             user = bd.verificar_usuario_nome(usuario, senha)
@@ -243,8 +222,9 @@ def login():
                     "nivel_acesso": user.get("nivel_acesso")
                 }
                 return redirect(url_for('home'))
-        elif not session.get("user") or not bd.verificar_usuario(usuario_id, senha):
-            return render_template("rotas/principais/index.html", erro=True, msg="Usuário ou senha inválidos.")
+        elif not session.get("user") or not bd.verificar_usuario_nome(usuario_id, senha):
+            erro = True
+            return render_template("rotas/principais/index.html", erro=erro, msg="Usuário ou senha inválidos")
     return render_template("rotas/principais/index.html")
 
 @app.route("/usuario", methods=["GET", "POST"])
