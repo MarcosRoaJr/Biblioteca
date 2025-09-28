@@ -1,0 +1,26 @@
+.navbar-cadastro {
+    padding: 1.2rem;
+    border-bottom: 1px solid black;
+    margin-bottom: 1.5rem;
+}
+
+.navbar-rotascadastro {
+    list-style: none;
+}
+
+.navbar-rotascadastro li {
+    width: 10rem;
+}
+
+.navbar-rotascadastro li a {
+    text-decoration: none;
+    color: black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    transition: 0.32s;
+}
+
+.navbar-rotascadastro li a:hover {
+    background-color: rgba(201, 201, 201, 0.85);
+    box-shadow: 1px 1px 6px black;
+}

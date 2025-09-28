@@ -5,15 +5,19 @@
 
 
 {% include "navbar-cadastro.html" %}
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrarlocalidade.css">
+</head>
 <div>
-    <div>
-        <form action="" method="post">
+    <div class="d-flex-center">
+        <form action="" method="post" class="shield input-localidade d-flex-center d-collun">
             <h1>Cadastrar câmpus</h1>
 
             <label for="titulo">Nome do Câmpus:</label>
             <input type="text" id="campus" name="campus" required><br>
 
-            <button>Cadastrar</button>
+            <button class="botao-enviar">Cadastrar</button>
         </form>
     </div>
 </div>

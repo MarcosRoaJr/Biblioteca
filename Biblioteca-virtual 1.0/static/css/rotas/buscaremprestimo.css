@@ -1,0 +1,13 @@
+.container-buscaremprestimo {
+    margin: 1rem;
+}
+
+.container-buscaremprestimo form input,
+.container-buscaremprestimo form select {
+    padding: 0.3rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    margin-right: 0.4rem;
+    margin: 0.5rem;
+}

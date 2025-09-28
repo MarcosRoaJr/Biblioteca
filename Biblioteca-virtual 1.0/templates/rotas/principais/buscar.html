@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
-<div>
-    <div>
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/buscar.css">
+</head>
+<div class="d-flex-center d-collun">
+    <div class="container-buscar shield">
         <h1>Buscar livro:</h1>
         <form action="" method="post">
             <label for="">ID do livro:</label>
             <input type="text" name="idlivro" id="idlivro">
-            <button>Enviar</button>
+            <button class="botao-enviar">Enviar</button>
         </form>
         <form action="" method="post">
             <label for="">Titulo:</label>
@@ -17,16 +21,16 @@
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button>Enviar</button>
+            <button class="botao-enviar">Enviar</button>
         </form>
         <form action="" method="post">
             <label for="">ISBN:</label>
             <input type="text" name="isbn" id="isbn">
-            <button>Enviar</button>
+            <button class="botao-enviar">Enviar</button>
         </form>
     </div>
-    <div>
-    <table>
+    <div class="container-buscarinfo d-flex">
+        <table class="table">
             <tbody>
                 {% if livro %}
                 <tr>
@@ -79,7 +83,7 @@
                 </tr>
             </tbody>
         </table>
-        <table>
+        <table class="table">
             <tbody>
                 <tr>
                     <th>Livro:</th>

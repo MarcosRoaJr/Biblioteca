@@ -4,13 +4,13 @@
 {% block content %}
 
 {% include "navbar-cadastro.html" %}
-
-
-
-<div>
-    <form action="" method="post">
-        <div>
-            <div>
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrareditora.css">
+</head>
+<div class="d-flex-center">
+    <form action="" method="post" class="d-flex-center d-collun shield">
+        <div class="d-flex-center">
+            <div class="input-editora d-flex-center d-collun">
                 <label for="">Nome da editora</label>
                 <input type="text" name="nome">
 
@@ -23,7 +23,7 @@
                 <label for="">Bairro</label>
                 <input type="text" name="bairro">
             </div>
-            <div>
+            <div class="input-editora d-flex-center d-collun">
                 <label for="">Cidade</label>
                 <input type="text" name="cidade">
 
@@ -37,7 +37,7 @@
                 <input type="email" name="email">
             </div>
         </div>
-    <button>Cadastrar</button>
+        <button class="botao-enviar">Cadastrar</button>
     </form>
 </div>
 

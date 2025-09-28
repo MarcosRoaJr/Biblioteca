@@ -3,25 +3,27 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastro.css">
+</head>
 <div>
-    <div>
+    <div class="container-selectcadastro d-flex-center d-collun">
         <h1>Cadastrar:</h1>
-        <ul>
+        <ul class="select-cadastro d-flex-center">
             <li>
-                <a href="/cadastrolivros"><i> Livro</i></a>
+                <a href="/cadastrolivros" class="bi-book"> Livro</a>
             </li>
             <li>
-                <a href="/cadastroautor"><i> Autores</i></a>
+                <a href="/cadastroautor" class="bi-person"> Autores</a>
             </li>
             <li>
-                <a href="/cadastroeditora"><i> Editora</i></a>
+                <a href="/cadastroeditora" class="bi-house"> Editora</a>
             </li>
             <li>
-                <a href="/cadastrolocalidade"><i> Localidade</i></a>
+                <a href="/cadastrolocalidade" class="bi-geo"> Localidade</a>
             </li>
             <li>
-                <a href="/cadastrogenero"><i> Generos</i></a>
+                <a href="/cadastrogenero" class="bi-tag"> Generos</a>
             </li>
         </ul>
     </div>

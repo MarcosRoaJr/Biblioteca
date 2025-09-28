@@ -3,76 +3,81 @@
 
 {% block content %}
 
-
-<div>
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrar_usuario.css">
+</head>
+<div class="shield d-flex-center d-collun">
     <h2>Cadastro usuario:</h2>
-    <form action="/cadastrar_usuario" method="post" id="submit">
-        <div>
-            <div>
-                <div>
+    <form action="/cadastrar_usuario" method="post" id="submit" class="form-container">
+        <div class="container-cadastro d-flex-center">
+            <div class="d-flex d-collun">
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Nome</label>
                     <input type="text" name="Nome" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Email</label>
                     <input type="text" name="Email" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Telefone</label>
                     <input type="text" name="Telefone" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Data de nascimento</label>
                     <input type="date" name="Data_nascimento" required>
                 </div>
             </div>
-            <div>
-                <div>
+            <div class="d-flex-center d-collun">
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">CPF</label>
                     <input type="text" name="CPF" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Senha</label>
                     <input type="text" name="Senha" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Confirmar Senha</label>
                     <input type="text" name="c_Senha" required>
                 </div>
-                <div>
+                <div class="container-cadastro-input d-flex d-collun">
                     <label for="">Nivel de acesso</label>
                     <input type="number" name="lvl_acess" required>
                 </div>
             </div>
         </div>
     </form>
-    <button id="botao">Cadastrar</button>
+    <button id="botao" class="botao-enviar">Cadastrar</button>
     {% if msg == True %}
-    <p>Usuario cadastrado!</p>
+    <p class="notificacao-cadastro d-flex-center">Usuario cadastrado!</p>
     {% elif msg == False %}
-    <p>Houve um erro!</p>
+    <p class="notificacao-erro d-flex-center">Houve um erro!</p>
     {% endif %}
-    <div id="meuAlert">
-        <div>
+    <div class="sumir" id="meuAlert">
+        <div class="alert-container">
             <p>Você irá criar um usuario deseja continuar?</p>
-            <div>
-                <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit">Sim</button>
-                <button onclick="fecharAlert()" value="negar" name="negado">Não</button>
+            <div class="d-flex-center">
+                <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit"
+                    style="margin-right: 0.5rem;" class="botao-enviar">Sim</button>
+                <button onclick="fecharAlert()" value="negar" name="negado" class="botao-cancelamento"
+                    style="margin-left: 0.5rem;">Não</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        const botao = document.getElementById('botao');
-        const meuAlert = document.getElementById('meuAlert');
-        const fecharAlert = () => {
-            meuAlert.classList.add('sumir');
-        }
-        const submit = document.getElementById('submit');
+<script>
+    const botao = document.getElementById('botao');
+    const meuAlert = document.getElementById('meuAlert');
+    const fecharAlert = () => {
+        meuAlert.classList.add('sumir');
+    }
+    const submit = document.getElementById('submit');
 
-        botao.addEventListener('click', function () {
-            meuAlert.classList.remove('sumir');
-            meuAlert.classList.add('alert');
-        });
-    </script>
-    {% endblock %}
+    botao.addEventListener('click', function () {
+        meuAlert.classList.remove('sumir');
+        meuAlert.classList.add('alert');
+    });
+</script>
+{% endblock %}

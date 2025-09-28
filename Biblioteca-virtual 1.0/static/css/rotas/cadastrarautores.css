@@ -1,0 +1,15 @@
+.shield label {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: left;
+    width: 15rem;
+}
+
+.shield input {
+    width: 15rem;
+    padding: 0.3rem;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+}

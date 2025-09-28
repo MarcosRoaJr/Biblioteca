@@ -2,19 +2,19 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<!-- <head>
-    <link rel="stylesheet" href="../../../static/css/paginas/buscaremprestimo.css">
-</head> -->
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/buscaremprestimo.css">
+</head>
 
-<div>
-    <div>
+<div class="d-flex-center d-collun">
+    <div class="container-buscaremprestimo shield">
         <form action="" method="post">
             <h2>Buscar emprestimo</h2>
             <label>ID emprestimo:</label>
             <input type="text" id="emprestimo_id" name="emprestimo_id">
-            <button id="botao" type="submit">Procurar</button>
+            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
         </form>
-    <form action="" method="post">
+        <form action="" method="post">
             <label>Nome Livro:</label>
             <select name="livro_escolhido" id="livro_escolhido">
                 <option value="">-- Selecione --</option>
@@ -22,29 +22,29 @@
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button id="botao" type="submit">Procurar</button>
+            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
         </form>
-    <form action="" method="post">
+        <form action="" method="post">
             <label>ID Usuario:</label>
             <input type="text" id="id_usuario" name="id_usuario">
-            <button id="botao" type="submit">Procurar</button>
+            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
         </form>
     </div>
     <div>
         <div>
             <div>
-                <table>
+                <table class="table">
                     <tr>
-                        <td>ID do emprestimo</td>
-                        <td>Usuario</td>
-                        <td>Livro</td>
-                        <td>Numero do exemplar</td>
-                        <td>Etiqueta</td>
-                        <td>Data de saida do livro</td>
-                        <td>Hora da saida do livro</td>
-                        <td>Data previta para deveolução</td>
-                        <td>Status do emprestimo</td>
-                        <td>Data da deveolução</td>
+                        <th>ID do emprestimo</th>
+                        <th>Usuario</th>
+                        <th>Livro</th>
+                        <th>Numero do exemplar</th>
+                        <th>Etiqueta</th>
+                        <th>Data de saida do livro</th>
+                        <th>Hora da saida do livro</th>
+                        <th>Data previta para deveolução</th>
+                        <th>Status do emprestimo</th>
+                        <th>Data da deveolução</th>
                     </tr>
                     {% if emprestimo %}
                     {% for emprestimo in emprestimo %}
@@ -54,11 +54,11 @@
                         <td>{{ emprestimo.livro }}</td>
                         <td>{{ emprestimo.numero_exemplar }}</td>
                         <td>{{ emprestimo.etiqueta }}</td>
-                        <th>{{ emprestimo.data_saida }}</th>
-                        <th>{{ emprestimo.hora_saida }}</th>
-                        <th>{{ emprestimo.data_prevista_devolucao }}</th>
-                        <th>{{ emprestimo.status_emprestimo }}</th>
-                        <th>{{ emprestimo.data_devolucao }}</th>
+                        <td>{{ emprestimo.data_saida }}</td>
+                        <td>{{ emprestimo.hora_saida }}</td>
+                        <td>{{ emprestimo.data_prevista_devolucao }}</td>
+                        <td>{{ emprestimo.status_emprestimo }}</td>
+                        <td>{{ emprestimo.data_devolucao }}</td>
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -105,7 +105,7 @@
         <label for="status_emprestimo">Status do emprestimo:</label>
         <select name="status_emprestimo" id="status_emprestimo">
         </select>
-    <button style="margin-top: 1rem;">Enviar</button>
+        <button style="margin-top: 1rem;">Enviar</button>
     </form>
 </div>
 {% endif %}

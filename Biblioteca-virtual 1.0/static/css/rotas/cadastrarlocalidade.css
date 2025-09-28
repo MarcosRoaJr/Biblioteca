@@ -1,0 +1,15 @@
+.input-localidade input {
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    margin-top: 0.2rem;
+}
+
+.input-localidade label {
+    margin-top: 1rem;
+}
+
+.input-localidade {
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+}

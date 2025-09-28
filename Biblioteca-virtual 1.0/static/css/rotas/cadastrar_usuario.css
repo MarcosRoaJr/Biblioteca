@@ -1,0 +1,65 @@
+.form-container,
+.container-cadastro {
+    width: 100%;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container-cadastro-input {
+    width: 100%;
+}
+
+.container-cadastro-input label {
+    width: 10rem;
+}
+
+.sumir {
+    display: none;
+}
+
+
+.notificacao-erro {
+    margin: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: brown;
+}
+
+.notificacao-cadastro {
+    margin: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: green;
+}
+
+.notificacao-cadastro,
+.notificacao-erro {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 5rem;
+    right: 0;
+}
+
+.alert-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.815);
+    backdrop-filter: blur(1.5rem);
+}
+
+.alert-container p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}

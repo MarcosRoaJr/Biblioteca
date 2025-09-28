@@ -1,0 +1,60 @@
+.container-selectcadastro {
+    margin: 3.5rem;
+}
+
+.select-cadastro {
+    list-style: none;
+}
+
+.select-cadastro li {
+    margin: 1.5rem;
+    margin-top: 3rem;
+}
+
+.select-cadastro li a {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 0.35rem;
+    text-decoration: none;
+    color: #000000;
+    background-color: #d8d8d8;
+    box-shadow: 3px 3px 12px #000000;
+    width: 10rem;
+    height: 10rem;
+    font-size: 1.3rem;
+}
+
+.select-cadastro li a:hover {
+    background-color: var(--color-cadastro);
+}
+
+.bi-book {
+    --color-cadastro: #ffba3a;
+    transition: 0.3s;
+}
+
+.bi-person {
+    --color-cadastro: #3d3aff;
+    transition: 0.3s;
+}
+
+.bi-geo {
+    --color-cadastro: #ff1f1f;
+    transition: 0.3s;
+}
+
+.bi-tag {
+    --color-cadastro: #ffeb3a;
+    transition: 0.3s;
+}
+
+.bi-house {
+    --color-cadastro: #1fff1f;
+    transition: 0.3s;
+}
+
+.select-cadastro li a i {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 0.3rem;
+}
