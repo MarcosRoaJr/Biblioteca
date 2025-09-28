@@ -2,37 +2,36 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block content %}
-
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrargeneros.css">
-</head>
-
 {% include "navbar-cadastro.html" %}
 
-<div class="d-flex-center">
-    <div class="d-flex-center d-flex-collum shield">
-        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrargeneros.css">
+</head>
+
+<div class="d-flex-center d-collun">
+    <div class="container-cadastrogeneros">
+        <form action="" method="post" class="shield d-flex-center d-collun">
             <h1>Cadastrar genero</h1>
 
             <label for="nome">Genero:</label>
             <input type="text" id="genero" name="genero" required><br>
 
-            <button class="botao-envio">Cadastrar</button>
+            <button class="botao-enviar">Cadastrar</button>
         </form>
-        <table class="tabela-universal">
-            <tr>
-                <th>Id gênero</th>
-                <th>Gênero</th>
-            </tr>
-            {% for genero in genero %}
-            <tr>
-                <td>{{ genero.id_genero }}</td>
-                <td>{{ genero.genero }}</td>
-            </tr>
-            {% endfor %}
-        </table>
     </div>
+    <table class="table">
+        <tr>
+            <th>Id gênero</th>
+            <th>Gênero</th>
+        </tr>
+        {% for genero in genero %}
+        <tr>
+            <td>{{ genero.id_genero }}</td>
+            <td>{{ genero.genero }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 </div>
 
 {% endblock %}

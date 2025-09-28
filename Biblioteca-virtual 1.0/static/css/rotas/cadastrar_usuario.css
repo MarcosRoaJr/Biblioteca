@@ -1,29 +1,22 @@
+.form-container,
+.container-cadastro {
+    width: 100%;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container-cadastro-input {
+    width: 100%;
+}
+
+.container-cadastro-input label {
+    width: 10rem;
+}
+
 .sumir {
     display: none;
 }
 
-.cadastro h2 {
-    margin-top: 1.5rem;
-}
-
-.cadastro,
-.cadastro-shield {
-    display: flex;
-    flex-direction: column;
-}
-
-.cadastro-shield label {
-    margin: .1rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.cadastro-shield input {
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    margin: .25rem;
-}
 
 .notificacao-erro {
     margin: 1.5rem;
@@ -67,4 +60,6 @@
 .alert-container p {
     font-weight: bold;
     font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
 }

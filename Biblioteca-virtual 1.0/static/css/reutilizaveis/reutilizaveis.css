@@ -1,0 +1,21 @@
+.d-flex {
+    display: flex;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-collun {
+    flex-direction: column;
+}
+
+.list-none {
+    list-style: none;
+}
+
+.list-none li a {
+    text-decoration: none;
+}

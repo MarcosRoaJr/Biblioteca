@@ -1,0 +1,14 @@
+.shield input {
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+.shield label {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.container-cadastrogeneros {
+    margin: 3rem;
+}

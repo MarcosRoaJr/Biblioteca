@@ -3,54 +3,44 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="../../../static/css/paginas/emprestimo.css">
+    <link rel="stylesheet" href="../../../static/css/rotas/emprestimo.css">
 </head>
 
-<div class="d-flex-center">
-    <form action="" class="cadastro-emprestimo shield d-flex-center" method="post">
+<div class="container-emprestimo d-flex-center d-collun">
+    <form action="" method="post" class="shield">
         <h1>Emprestimo de livros</h1>
-        <div class="d-flex-collum">
+        <div class="emprestimo-option">
             <label for="livro">Livro:</label>
-            <input list="opcoes" id="opcao" name="opcao">
-            <datalist id="opcoes">
+            <select id="opcoes">
+                <option>--Selecionar--</option>
                 {% for livro in livro %}
-                <option value="{{livro.id_livro}} - {{ livro.titulo }}">
-                    {% endfor %}
-            </datalist>
+                <option value="{{livro.id_livro}}">{{livro.id_livro}} - {{ livro.titulo }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="d-flex-collum">
+        <div class="emprestimo-option">
             <label for="usuario">Usuário:</label>
-            <input list="usuarios" id="usuario" name="usuario">
-
-            <datalist id="usuarios">
+            <select id="opcoes">
+                <option>--Selecionar--</option>
                 {% for u in usuario %}
-                <option value="{{ u.id_usuario }} - {{ u.nome }}">
-                    {% endfor %}
-            </datalist>
+                <option value="">{{ u.id_usuario }} - {{ u.nome }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="d-flex-collum">
+        <div class="emprestimo-option">
             <label for="exemplar">Exemplar:</label>
-            <input list="exemplares" id="exemplar" name="exemplar">
-
-            <datalist id="exemplares">
+            <select id="opcoes">
+                <option>--Selecionar--</option>
                 {% for e in exemplar %}
-                <option value="{{ e.etiqueta }} - {{ e.numero_patrimonio }}">
-                    {% endfor %}
-            </datalist>
+                <option value="">{{ e.etiqueta }} - {{ e.numero_patrimonio }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="d-flex-collum">
-            <label for="data_emprestimo">Data do Empréstimo:</label>
-            <input type="date" id="data_emprestimo" name="data_emprestimo">
-        </div>
-        <div class="d-flex-collum">
+        <div class="emprestimo-option">
             <label for="data_devolucao">Data de Devolução:</label>
             <input type="date" id="data_devolucao" name="data_devolucao">
         </div>
-        <div class="d-flex-collum">
-            <label for="data_devolucao">Hora do emprestimo:</label>
-            <input type="time" id="data_devolucao" name="data_devolucao">
-        </div>
-        <button type="submit" class="botao-envio">Registrar Empréstimo</button>
+        <button type="submit" class="botao-enviar">Registrar Empréstimo</button>
     </form>
 </div>
 {% endblock %}

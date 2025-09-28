@@ -2,16 +2,14 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block content %}
-
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarautores.css">
-</head>
-
 {% include "navbar-cadastro.html" %}
 
-<div class="d-flex-center">
-    <div class="d-flex-center shield">
-        <form action="" method="post" class="form-cadastro d-flex-center d-flex-collum">
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrarautores.css">
+</head>
+<div>
+    <div class="d-flex-center d-collun">
+        <form action="" method="post" class="shield d-flex-center d-collun">
             <h1>Cadastrar autor</h1>
 
             <label for="nome">Nome do autor:</label>
@@ -19,22 +17,20 @@
             <label for="nome">Sobrenome do autor:</label>
             <input type="text" id="sobrenome" name="sobrenome" required><br>
 
-            <button class="botao-envio">Cadastrar</button>
-
-            <table class="tabela-universal">
-                <tr>
-                    <th>Id autor</th>
-                    <th>Nome do autor</th>
-                </tr>
-                {% for autor in autor %}
-                <tr>
-                    <td>{{ autor.id_autor }}</td>
-                    <td>{{ autor.nome_completo }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <button class="botao-enviar">Cadastrar</button>
         </form>
-
+        <table class="table">
+            <tr>
+                <th>Id autor</th>
+                <th>Nome do autor</th>
+            </tr>
+            {% for autor in autor %}
+            <tr>
+                <td>{{ autor.id_autor }}</td>
+                <td>{{ autor.nome_completo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 

@@ -1,0 +1,32 @@
+.botao-enviar {
+    background-color: #3aff3a;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.3rem;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.botao {
+    background-color: #6e92a7;
+    width: 100%;
+    height: 2rem;
+    border: none;
+    border-radius: 0.4rem;
+    box-shadow: 1px 1px 8px 1px black;
+    transition: 0.2s;
+}
+
+.botao:active,
+.botao-enviar:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+}
+
+.botao-cancelamento {
+    background-color: #ff3a3a;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.3rem;
+}

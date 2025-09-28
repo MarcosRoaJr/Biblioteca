@@ -1,0 +1,27 @@
+.container-emprestimo {
+    margin-top: 5rem;
+}
+
+form button {
+    margin-top: 1rem;
+}
+
+.emprestimo-option label {
+    display: inline-block;
+    width: 9.5rem;
+    padding: 0.2rem;
+    font-weight: bold;
+}
+
+.emprestimo-option input,
+.emprestimo-option select {
+    padding: 0.3rem;
+    margin: 0.2rem;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+}
+
+#opcoes option {
+    background-color: black;
+    color: white;
+}

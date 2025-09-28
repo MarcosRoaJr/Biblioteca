@@ -3,76 +3,81 @@
 {% block title %}Página Inicial{% endblock %}
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/paginas/cadastrarlocalidade.css">
-</head>
-{% include "navbar-cadastro.html" %}
-<div class="d-flex-center">
-    <form action="" method="post" class="d-flex-collum">
-        <ul>
-            <li>
-                <label for="">Titulo</label>
-                <input type="text">
-            </li>
-            <li>
-                <label for="">Genero</label>
-                <select name="genero_escolhido" id="genero_escolhido">
-                    <option value="">-- Selecione --</option>
-                    {% for escolha in generos %}
-                    <option value="{{ escolha.id_genero }}">{{ escolha.genero }}</option>
-                    {% endfor %}
-                </select>
-            </li>
-            <li>
-                <label for="">Autor</label>
-                <select name="genero_escolhido" id="genero_escolhido">
-                    <option value="">-- Selecione --</option>
-                    {% for escolha in autores %}
-                    <option value="{{ escolha.id_autor }}">{{ escolha.nome_completo }}</option>
-                    {% endfor %}
-                </select>
-            </li>
-            <li>
-                <label for="">Editora</label>
-                <select name="genero_escolhido" id="genero_escolhido">
-                    <option value="">-- Selecione --</option>
-                    {% for escolha in editora %}
-                    <option value="{{ escolha.id_editora }}">{{ escolha.Nome }}</option>
-                    {% endfor %}
-                </select>
-            </li>
-            <li>
-                <label for="">ISBN</label>
-                <input type="text">
-            </li>
-            <li>
-                <label for="">Campus</label>
-                <select name="campus_escolhido" id="">
-                    <option value="">-- Selecione --</option>
-                    {% for a in campus %}
-                    <option value="{{ a.id_campus }}">{{ a.nome }}</option>
-                    {% endfor %}
-                </select>
 
-            </li>
-            <li>
-                <label for="">Setor</label>
-                <input type="text">
-            </li>
-            <li>
-                <label for="">Estante</label>
-                <input type="text">
-            </li>
-            <li>
-                <label for="">Data de publição</label>
-                <input type="text">
-            </li>
-            <li>
-                <label for="">Descrição</label>
-                <input type="text">
-            </li>
-        </ul>
-        <button class="botao-envio" >Cadastrar</button>
+{% include "navbar-cadastro.html" %}
+
+<head>
+    <link rel="stylesheet" href="../../../static/css/rotas/cadastrolivros.css">
+</head>
+<div class="d-flex-center">
+    <form action="" method="post" class="form-cadastrolivro shield d-flex-center d-collun">
+        <div class="container-cadastrolivros d-flex-center">
+            <ul class="cadastrolivros-inputs">
+                <li>
+                    <label for="">Titulo</label>
+                    <input type="text" name="titulo" required>
+                </li>
+                <li>
+                    <label for="">Genero</label>
+                    <select name="genero_escolhido" id="genero_escolhido">
+                        <option value="">-- Selecione --</option>
+                        {% for escolha in generos %}
+                        <option value="{{ escolha.id_genero }}">{{ escolha.genero }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li>
+                    <label for="">Autor</label>
+                    <select name="autor_escolhido" id="autor_escolhido">
+                        <option value="">-- Selecione --</option>
+                        {% for escolha in autores %}
+                        <option value="{{ escolha.id_autor }}">{{ escolha.nome_completo }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li>
+                    <label for="">Editora</label>
+                    <select name="editora_escolhido" id="editora_escolhido">
+                        <option value="">-- Selecione --</option>
+                        {% for escolha in editora %}
+                        <option value="{{ escolha.id_editora }}">{{ escolha.Nome }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li>
+                    <label for="">ISBN</label>
+                    <input type="text" name="isbn" required>
+                </li>
+            </ul>
+            <ul class="cadastrolivros-inputs">
+                <li>
+                    <label for="">Campus</label>
+                    <select name="campus_escolhido" id="campus_escolhido">
+                        <option value="">-- Selecione --</option>
+                        {% for a in campus %}
+                        <option value="{{ a.id_campus }}">{{ a.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li>
+                    <label for="">Setor</label>
+                    <input type="text" name="setor" required>
+                </li>
+                <li>
+                    <label for="">Estante</label>
+                    <input type="text" name="estante" required>
+                </li>
+                <li>
+                    <label for="">Data de publição</label>
+                    <input type="text" name="data_publicacao" required>
+                </li>
+                <li>
+                    <label for="">Descrição</label>
+                    <input type="text" name="descricao" required>
+                </li>
+            </ul>
+        </div>
+        <button class="botao-enviar">Cadastrar</button>
     </form>
 </div>
 {% endblock %}

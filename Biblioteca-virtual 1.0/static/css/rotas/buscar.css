@@ -1,0 +1,14 @@
+.container-buscar {
+    margin: 1.5rem;
+}
+
+.container-buscar form input,
+.container-buscar form select {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.container-buscar form {
+    margin: 0.8rem;
+}

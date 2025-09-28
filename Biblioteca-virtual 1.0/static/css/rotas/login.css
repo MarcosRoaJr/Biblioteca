@@ -1,6 +1,29 @@
+.msg-alerta {
+    position: absolute;
+    top: 3.5rem;
+    right: 2.5rem;
+    background-color: rgb(211, 53, 53);
+    padding: 1rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+}
+
 .login-container {
     width: 100%;
     height: 100%;
+}
+
+.login-container img {
+    width: 20rem;
+    height: auto;
+    margin: 1.5rem;
+}
+
+.form-login {
+    margin: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    box-shadow: 0.5rem 0.5rem 3rem 0.1rem black;
 }
 
 .input-box {
@@ -8,38 +31,24 @@
     width: max-content;
 }
 
-.input-box input {
-    width: 350px;
-    padding: 14px 16px;
-    border: 2px solid #c9c9c96c;
-    border-radius: 10px;
-    background: #ffffff29;
-    outline: none;
-    font-size: 16px;
-    transition: border-color .2s ease;
-    color: #ffffff;
-}
-
-.login-container img{
-    height: auto;
-    width: 20rem;
-    margin-top: 3.4rem;
-    filter: invert(100%);
-}
-
-.login-container h1 {
-    color: white;
-    font-family: arial;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
 .input-box {
     margin-bottom: 1rem;
 }
 
+.input-box input {
+    width: 280px;
+    padding: 14px 16px;
+    border: 2px solid #c9c9c96c;
+    border-radius: 10px;
+    background: #00000029;
+    outline: none;
+    font-size: 16px;
+    transition: border-color .2s ease;
+    color: #000000;
+}
+
 .input-box input:focus {
-    border-color: #ffffff;
+    border-color: #000000;
 }
 
 .input-box .label {
@@ -48,7 +57,7 @@
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    color: #999;
+    color: #000000;
     pointer-events: none;
     padding: 0 6px;
     background: transparent;
@@ -67,12 +76,14 @@
         background-color .25s ease;
     transition-delay: calc(var(--i) * 20ms);
     border-radius: 2px;
+    padding: 0.1rem;
 }
 
 .input-box input:focus~.label .char,
 .input-box input:valid~.label .char {
     transform: translateY(-25px);
-    font-size: 14px;
-    color: #000000;
-    background: #e8e8e8;
+    font-size: 16px;
+    color: #ffffff;
+    background: #000000;
+    padding: 0.1rem;
 }
