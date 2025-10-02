@@ -67,9 +67,11 @@
     </div>
 </div>
 
+
 <script>
     const botao = document.getElementById('botao');
     const meuAlert = document.getElementById('meuAlert');
+    const body = document.getElementById('body');
     const fecharAlert = () => {
         meuAlert.classList.add('sumir');
     }
@@ -78,6 +80,7 @@
     botao.addEventListener('click', function () {
         meuAlert.classList.remove('sumir');
         meuAlert.classList.add('alert');
+        body.classList.add('travar-scroll');
     });
 </script>
 {% endblock %}
