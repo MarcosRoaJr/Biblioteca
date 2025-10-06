@@ -50,8 +50,6 @@
             <th>Cidade</th>
             <th>CEP</th>
             <th>CNPJ</th>
-            <th>Alterar</th>
-            <th>Excluir </th>
         </tr>
         {% for editora in editora %}
         <tr>
@@ -63,11 +61,10 @@
             <td>{{ editora.Cidade }}</td>
             <td>{{ editora.Cep }}</td>
             <td>{{ editora.CNPJ }}</td>
-            <td class="alterar-info"><button id="botao" class="botao-alterar">Alterar</button></td>
-            <td class="alterar-info"><button id="botao" class="botao-excluir">Excluir</button></td>
         </tr>
         {% endfor %}
     </table>
 </div>
 
+<script src="../../../static/js/botao.js"></script>
 {% endblock %}

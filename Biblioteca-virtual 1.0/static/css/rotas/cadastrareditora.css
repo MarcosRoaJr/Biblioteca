@@ -1,17 +1,29 @@
-.input-editora input {
+.input-editora input,
+.input-editora-alter input {
     border: 1px solid black;
     border-radius: 0.3rem;
     padding: 0.3rem;
     margin-top: 0.2rem;
 }
 
-.input-editora label {
+.input-editora label,
+.input-editora-alter label {
     margin-top: 1rem;
+}
+
+.alert-container>h2 {
+    color: #ffffff;
 }
 
 .input-editora {
     margin: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.input-editora-alter {
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
 }
 
 .alterar-info:hover {

@@ -4,7 +4,9 @@ const meuAlert = document.getElementById('meuAlert');
 const body = document.getElementById('body');
 const fecharAlert = () => {
     meuAlert.classList.add('sumir');
+    body.classList.remove('travar-scroll');
 }
+
 const submit = document.getElementById('submit');
 
 botao.addEventListener('click', function () {

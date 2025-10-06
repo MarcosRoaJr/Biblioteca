@@ -23,15 +23,11 @@
             <tr>
                 <th>Id autor</th>
                 <th>Nome do autor</th>
-                <th>Alterar infomação</th>
-                <th>Excluir autor</th>
             </tr>
             {% for autor in autor %}
             <tr>
                 <td>{{ autor.id_autor }}</td>
                 <td>{{ autor.nome_completo }}</td>
-                <td class="alterar-info"><button id="botao" class="botao-alterar">Alterar</button></td>
-                <td class="alterar-info"><button id="botao" class="botao-excluir">Excluir</button></td>
             </tr>
             <div class="sumir" id="meuAlert">
                 <div class="alert-container">
