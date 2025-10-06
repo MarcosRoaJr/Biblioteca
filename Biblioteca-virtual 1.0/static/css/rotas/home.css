@@ -5,12 +5,19 @@ main {
 .livro-container {
     background-color: #dddddd;
     box-shadow: 2px 2px 12px 1px black;
-    width: 20rem;
-    height: 19rem;
+    width: 20.5rem;
+    height: 21.5rem;
     margin: 1rem;
     border-radius: .3rem;
     color: #000000;
     padding: 0.3rem;
+    user-select: none;
+}
+
+.livro-container h2 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .shield-livro {

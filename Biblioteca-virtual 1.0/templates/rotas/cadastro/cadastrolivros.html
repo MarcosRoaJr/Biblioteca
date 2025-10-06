@@ -77,7 +77,22 @@
                 </li>
             </ul>
         </div>
-        <button class="botao-enviar">Cadastrar</button>
+        {% if msg == True %}
+        <p class="notificacao-cadastro d-flex-center">Usuario cadastrado!</p>
+        {% elif msg == False %}
+        <p class="notificacao-erro d-flex-center">Houve um erro!</p>
+        {% endif %}
+        <div class="sumir" id="meuAlert">
+            <div class="alert-container">
+                <p>Você irá criar um usuario deseja continuar?</p>
+                <div class="d-flex-center">
+                    <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit"
+                        style="margin-right: 0.5rem;" class="botao-enviar">Sim</button>
+                    <button onclick="fecharAlert()" value="negar" name="negado" class="botao-cancelamento"
+                        style="margin-left: 0.5rem;">Não</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

@@ -29,9 +29,24 @@
                 <td>{{ autor.id_autor }}</td>
                 <td>{{ autor.nome_completo }}</td>
             </tr>
-            {% endfor %}
-        </table>
+            <div class="sumir" id="meuAlert">
+                <div class="alert-container">
+                    <h1>Alterar o nome do autor:</h1>
+                    <form action="">
+                        <input type="text">
+                        <div class="d-flex-center">
+                            <button onclick="fecharAlert()" value="confirmar" name="confirmacao" form="submit"
+                                style="margin-right: 0.5rem;" class="botao-enviar">Sim</button>
+
+                            <button onclick="fecharAlert()" value="negar" name="negado" class="botao-cancelamento"
+                                style="margin-left: 0.5rem;">Não</button>
+                    </form>
+                </div>
+            </div>
     </div>
+    {% endfor %}
+    </table>
 </div>
 
+<script src="../../../static/js/botao.js"></script>
 {% endblock %}

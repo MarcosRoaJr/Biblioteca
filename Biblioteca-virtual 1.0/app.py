@@ -58,6 +58,7 @@ def cadastro_genero():
 
 @app.route("/cadastroeditora", methods=["GET", "POST"])
 def cadastro_editora():
+    editora = bd.buscar_editora()
     if request.method == "POST":
         Nome = request.form.get("nome")
         Telefone = request.form.get("telefone")
@@ -68,7 +69,7 @@ def cadastro_editora():
         cnpj = request.form.get("cnpj")
 
         bd.criar_editora(Nome, Telefone, Endereço, Bairro, Cidade, Cep, cnpj)
-    return render_template("rotas/cadastro/cadastro_editora.html", show_navbar=True)
+    return render_template("rotas/cadastro/cadastro_editora.html", show_navbar=True, editora=editora )
 
 @app.route("/cadastroautor", methods=["GET", "POST"])
 def cadastro_autor():

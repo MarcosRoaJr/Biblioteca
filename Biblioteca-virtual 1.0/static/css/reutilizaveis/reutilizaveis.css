@@ -19,3 +19,7 @@
 .list-none li a {
     text-decoration: none;
 }
+
+.travar-scroll {
+    overflow: hidden;
+}

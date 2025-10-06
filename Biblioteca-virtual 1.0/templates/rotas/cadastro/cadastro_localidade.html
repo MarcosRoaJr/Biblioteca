@@ -9,7 +9,7 @@
 <head>
     <link rel="stylesheet" href="../../../static/css/rotas/cadastrarlocalidade.css">
 </head>
-<div>
+<div class="d-flex-center d-collun">
     <div class="d-flex-center">
         <form action="" method="post" class="shield input-localidade d-flex-center d-collun">
             <h1>Cadastrar câmpus</h1>
@@ -20,5 +20,19 @@
             <button class="botao-enviar">Cadastrar</button>
         </form>
     </div>
+    <table class="table">
+        <tr>
+            <th>Id câmpus</th>
+            <th>Nome do câmpus</th>
+        </tr>
+        {% for campus in campus_l %}
+        <tr>
+            <td>{{ campus.id_campus }}</td>
+            <td>{{ campus.nome }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
+
+<script src="../../../static/js/botao.js"></script>
 {% endblock %}

@@ -4,10 +4,11 @@
 {% block content %}
 
 {% include "navbar-cadastro.html" %}
+
 <head>
     <link rel="stylesheet" href="../../../static/css/rotas/cadastrareditora.css">
 </head>
-<div class="d-flex-center">
+<div class="d-flex-center d-collun">
     <form action="" method="post" class="d-flex-center d-collun shield">
         <div class="d-flex-center">
             <div class="input-editora d-flex-center d-collun">
@@ -39,6 +40,31 @@
         </div>
         <button class="botao-enviar">Cadastrar</button>
     </form>
+    <table class="table">
+        <tr>
+            <th>Id editora</th>
+            <th>Nome da editora</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>CEP</th>
+            <th>CNPJ</th>
+        </tr>
+        {% for editora in editora %}
+        <tr>
+            <td>{{ editora.id_editora }}</td>
+            <td>{{ editora.Nome }}</td>
+            <td>{{ editora.Telefone }}</td>
+            <td>{{ editora.Endereço }}</td>
+            <td>{{ editora.Bairro }}</td>
+            <td>{{ editora.Cidade }}</td>
+            <td>{{ editora.Cep }}</td>
+            <td>{{ editora.CNPJ }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
+<script src="../../../static/js/botao.js"></script>
 {% endblock %}

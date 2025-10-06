@@ -67,17 +67,6 @@
     </div>
 </div>
 
-<script>
-    const botao = document.getElementById('botao');
-    const meuAlert = document.getElementById('meuAlert');
-    const fecharAlert = () => {
-        meuAlert.classList.add('sumir');
-    }
-    const submit = document.getElementById('submit');
 
-    botao.addEventListener('click', function () {
-        meuAlert.classList.remove('sumir');
-        meuAlert.classList.add('alert');
-    });
-</script>
+<script src="../../../static/js/botao.js"></script>
 {% endblock %}

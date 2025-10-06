@@ -8,9 +8,19 @@
 .table tr td {
     border: 1px solid #646464;
     text-align: center;
-    text-align: left;
     background-color: #c9c9c9;
+}
+
+.table tr th {
     padding: 0.5rem;
+}
+
+.table tr td > button {
+    padding: none;
+}
+
+.table tr > td {
+    padding: 0.75rem;
 }
 
 .table tr th {
@@ -35,4 +45,58 @@
 
 .container-cadastro form {
     margin: 0.8rem;
+}
+
+.sumir {
+    display: none;
+}
+
+.alert-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.815);
+    backdrop-filter: blur(1.5rem);
+}
+
+.alert-container p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.alterar-info:hover {
+    background-color: #ffffff;
+}
+
+.botao-alterar,
+.botao-excluir {
+    border: None;
+    background: none;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.botao-alterar:active,
+.botao-excluir:active {
+    font-size: .7rem;
+
+}
+
+.botao-alterar {
+    color: #0055a5;
+}
+
+.botao-excluir {
+    color: #a50000;
 }
