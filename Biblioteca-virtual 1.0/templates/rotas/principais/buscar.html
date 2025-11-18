@@ -1,129 +1,243 @@
 {% extends "base.html" %}
 {% block title %}Página Inicial{% endblock %}
+
+{# Se o seu base.html tiver um bloco de CSS extra, use isto:
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rotas/buscar.css') }}">
+{% endblock %}
+#}
+
 {% block content %}
 
-<head>
-    <link rel="stylesheet" href="../../../static/css/rotas/buscar.css">
-</head>
-<div class="d-flex-center d-collun">
-    <div class="container-buscar shield">
-        <h1>Buscar livro:</h1>
-        <form action="" method="post">
-            <label for="">ID do livro:</label>
-            <input type="text" name="idlivro" id="idlivro">
-            <button class="botao-enviar">Enviar</button>
+<!-- Se preferir manter local (menos recomendado), descomente a linha abaixo -->
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/rotas/buscar.css') }}"> -->
+
+<div class="d-flex-center d-column">
+    <div class="container-buscar shield" role="search">
+        <h1>Buscar livro</h1>
+
+        <!-- Buscar por ID -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por ID do livro">
+            <label for="idlivro">ID do livro</label>
+            <input type="text" name="idlivro" id="idlivro" inputmode="numeric" pattern="[0-9]+" placeholder="Ex.: 123"
+                aria-describedby="hint-id" />
+            <small id="hint-id" class="hint">Somente números</small>
+            <button class="btn btn-primary botao-enviar" type="submit" data-ensure-filled="#idlivro">Enviar</button>
         </form>
-        <form action="" method="post">
-            <label for="">Titulo:</label>
-            <select name="titulo_escolhido" id="titulo_escolhido">
+
+        <!-- Buscar por Título -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por Título">
+            <label for="titulo_escolhido">Título</label>
+            <select name="titulo_escolhido" id="titulo_escolhido" required>
                 <option value="">-- Selecione --</option>
-                {% for escolha in titulo %}
+                {% for escolha in titulo or [] %}
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button class="botao-enviar">Enviar</button>
+            <button class="btn btn-primary botao-enviar" type="submit">Enviar</button>
         </form>
-        <form action="" method="post">
-            <label for="">ISBN:</label>
-            <input type="text" name="isbn" id="isbn">
-            <button class="botao-enviar">Enviar</button>
+
+        <!-- Buscar por ISBN -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por ISBN">
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" placeholder="Ex.: 978-3-16-148410-0"
+                aria-describedby="hint-isbn" />
+            <small id="hint-isbn" class="hint">Aceita com ou sem hífen</small>
+            <button class="btn btn-primary botao-enviar" type="submit" data-ensure-filled="#isbn">Enviar</button>
         </form>
     </div>
+
     <div class="container-buscarinfo d-flex">
-        <table class="table">
-            <tbody>
-                {% if livro %}
-                <tr>
-                    <th>Id livro</th>
-                    <td>{{ livro.id_livro }}</td>
-                </tr>
-                <tr>
-                    <th>Título</th>
-                    <td>{{ livro.titulo }}</td>
-                </tr>
-                <tr>
-                    <th>Gênero</th>
-                    <td>{{ livro.generos }}</td>
-                </tr>
-                <tr>
-                    <th>Autor</th>
-                    <td>{{ livro.autores }}</td>
-                </tr>
-                <tr>
-                    <th>ISBN</th>
-                    <td>{{ livro.ISBN }}</td>
-                </tr>
-                <tr>
-                    <th>Nº de exemplares</th>
-                    <td>{{ livro.qtd_exemplares }}</td>
-                </tr>
-                <tr>
-                    <th>Etiqueta</th>
-                    <td>{{ livro.etiquetas }}</td>
-                </tr>
-                <tr>
-                    <th>Data de publicação</th>
-                    <td>{{ livro.data_publicacao }}</td>
-                </tr>
-                <tr>
-                    <th>Editora</th>
-                    <td>{{ livro.editora }}</td>
-                </tr>
-                <tr>
-                    <th>Campus</th>
-                    <td>{{ livro.campus }}</td>
-                </tr>
-                <tr>
-                    <th>Estante</th>
-                    <td>{{ livro.estante }}</td>
-                </tr>
-                <tr>
-                    <th>Setor</th>
-                    <td>{{ livro.setor }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Livro:</th>
-                    {% for a in exemplar or [] %}
-                    <td>{{ loop.index }}°</td>
+        {% if livro %}
+        <div class="table-responsive">
+            <table class="table" aria-label="Informações do livro">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id livro</th>
+                        <td>{{ livro.id_livro | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Título</th>
+                        <td>{{ livro.titulo | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gênero</th>
+                        <td>{{ livro.generos | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Autor</th>
+                        <td>{{ livro.autores | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ISBN</th>
+                        <td>{{ livro.ISBN | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nº de exemplares</th>
+                        <td>{{ livro.qtd_exemplares | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Etiqueta</th>
+                        <td>{{ livro.etiquetas | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Data de publicação</th>
+                        <td>{{ livro.data_publicacao | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Editora</th>
+                        <td>{{ livro.editora | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Campus</th>
+                        <td>{{ livro.campus | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estante</th>
+                        <td>{{ livro.estante | default('—') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Setor</th>
+                        <td>{{ livro.setor | default('—') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table" aria-label="Exemplares do livro">
+                <thead>
+                    <tr>
+                        <th>Nº exemplar</th>
+                        <th>Patrimônio</th>
+                        <th>Código de barras</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if exemplar and exemplar|length > 0 %}
+                    {% for a in exemplar %}
+                    <tr>
+                        <td>{{ a.numero_exemplar | default('—') }}</td>
+                        <td>{{ a.numero_patrimonio | default('—') }}</td>
+                        <td>{{ a.codigo_barras | default('—') }}</td>
+                        <td>{{ a.status | default('—') }}</td>
+                    </tr>
                     {% endfor %}
-                </tr>
-                <tr>
-                    <th>Patrimônio:</th>
-                    {% for a in exemplar or [] %}
-                    <td>{{ a.numero_patrimonio }}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <th>Código barras:</th>
-                    {% for a in exemplar or [] %}
-                    <td>{{ a.codigo_barras }}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <th>Nº exemplar:</th>
-                    {% for a in exemplar or [] %}
-                    <td>{{ a.numero_exemplar }}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <th>Status:</th>
-                    {% for a in exemplar or [] %}
-                    <td>{{ a.status }}</td>
-                    {% endfor %}
-                </tr>
-                {% else %}
-                <tr>
-                    <th>Exemplares</th>
-                    <td>Sem exemplares cadastrados</td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Nenhum exemplar encontrado</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="table-responsive">
+            <table class="table" aria-label="Informações do livro - não encontrado">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id livro</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Título</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gênero</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Autor</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ISBN</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nº de exemplares</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Etiqueta</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Data de publicação</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Editora</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Campus</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estante</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Setor</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table" aria-label="Exemplares do livro - não encontrado">
+                <tbody>
+                    <tr>
+                        <th>Nº exemplar</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th>Patrimônio</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th>Código de barras</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>Não encontrado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+<!-- JS pequeno: auto-submit no select e bloqueio de submit vazio -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('titulo_escolhido');
+        if (select) {
+            select.addEventListener('change', function () {
+                if (this.value) {
+                    this.form.submit();
+                }
+            });
+        }
+
+        // Evita enviar formulários sem nada digitado/selecionado (ID e ISBN)
+        document.querySelectorAll('button[data-ensure-filled]').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const selector = this.getAttribute('data-ensure-filled');
+                const input = document.querySelector(selector);
+                if (input && !input.value.trim()) {
+                    e.preventDefault();
+                    input.focus();
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

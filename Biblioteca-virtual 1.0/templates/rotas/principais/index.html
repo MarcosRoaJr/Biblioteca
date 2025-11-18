@@ -41,7 +41,15 @@
                 </label>
             </div>
 
-            <button type="submit" class="botao">Entrar</button>
+            <button type="submit" class="botao" onclick="sumir()">Entrar</button>
+            <button type="button" class="botao" id="btn-qr" style="margin-top:1rem;">Ler QR do
+                crachá</button>
+
+            <!-- Container do leitor (fica oculto até clicar no botão) -->
+            <div id="qr-container" style="display:none; margin-top:1rem;">
+                <div id="reader" style="width:320px; max-width:100%;"></div>
+                <button type="button" class="botao" id="fechar-qr" style="margin-top:0.5rem;">Cancelar</button>
+            </div>
         </form>
 
         <form class="form-login  d-flex-center d-collun" action="/" method="post" autocomplete="off">
@@ -68,13 +76,87 @@
                     <span class="char" style="--i:4">a</span>
                 </label>
             </div>
-            <button type="submit" class="botao  ">Entrar</button>
+            <button type="submit" class="botao" onclick="sumir()">Entrar</button>
     </div>
     </form>
     {% if erro %}
-    <div class="msg-alerta" role="alert">
+    <div class="msg-alerta" role="alert" id="item">
         {{ msg }}
     </div>
     {% endif %}
 </div>
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const alerta = document.getElementById('item');
+        if (alerta) {
+            setTimeout(() => alerta.classList.add('sumir'), 8000);
+        }
+    });
+    <!-- Lib do leitor de QR no navegador -->
+    function getLoginForm() {
+        return document.querySelector('form[action="/"]');
+    }
+
+    let qrInstance = null;
+
+    document.getElementById('btn-qr').addEventListener('click', async () => {
+        const container = document.getElementById('qr-container');
+        container.style.display = 'block';
+
+        if (!qrInstance) {
+            qrInstance = new Html5Qrcode("reader");
+        }
+
+        const config = { fps: 10, qrbox: 250 };
+
+        // Tenta câmera traseira (mobile). Se falhar, usa frontal.
+        const startScanner = async (constraints) => {
+            await qrInstance.start(
+                constraints,
+                config,
+                async (decodedText) => {
+                    // "3 3333" ou com quebra de linha — tratamos ambos
+                    const partes = decodedText.trim().split(/\s+/);
+                    const usuario = partes[0] || "";
+                    const senha = partes[1] || "";
+
+                    const form = getLoginForm();
+                    if (!form) return;
+
+                    const userInput = form.querySelector('input[name="usuario"]');
+                    const senhaInput = form.querySelector('input[name="senha"]');
+
+                    if (userInput) userInput.value = usuario;
+                    if (senhaInput) senhaInput.value = senha;
+
+                    // Para o scanner, esconde e envia o form
+                    try { await qrInstance.stop(); } catch (e) { }
+                    container.style.display = 'none';
+                    form.submit();
+                },
+                (errorMsg) => {
+                    // erros de varredura são normais; silenciar para não poluir console
+                }
+            );
+        };
+
+        try {
+            await startScanner({ facingMode: "environment" });
+        } catch (e) {
+            await startScanner({ facingMode: "user" }); // fallback p/ notebooks
+        }
+    });
+
+    // Botão cancelar fecha a câmera
+    document.getElementById('fechar-qr').addEventListener('click', async () => {
+        const container = document.getElementById('qr-container');
+        try { if (qrInstance) await qrInstance.stop(); } catch (e) { }
+        container.style.display = 'none';
+    });
+</script>
+
+</script>
 {% endblock %}

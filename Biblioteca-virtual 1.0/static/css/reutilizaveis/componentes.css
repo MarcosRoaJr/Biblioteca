@@ -1,102 +1,124 @@
-.table {
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    margin: 0.5rem;
-}
+/* =====================================================
+   COMPONENTES (reutilizáveis entre páginas)
+   - Tabela, cartões/boxes, botões padrões, modais/alertas
+   ===================================================== */
 
-.table tr th,
-.table tr td {
-    border: 1px solid #646464;
-    text-align: center;
-    background-color: #c9c9c9;
-}
-
-.table tr th {
-    padding: 0.5rem;
-}
-
-.table tr td > button {
-    padding: none;
-}
-
-.table tr > td {
-    padding: 0.75rem;
-}
-
-.table tr th {
-    background-color: #7a7a7a;
-    color: rgb(0, 0, 0);
-}
-
+/* Box/card base */
 .shield {
-    background-color: #cecece;
-    padding: 1.5rem;
-    border-radius: 0.3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 2px 2px 10px black;
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
 }
 
-.container-cadastro input,
-.container-cadastro select {
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    border: 1px solid black;
+/* Wrapper responsivo para tabelas largas */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  background: #fff;
 }
 
-.container-cadastro form {
-    margin: 0.8rem;
+/* Tabela base */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  min-width: 520px;
+  margin: 0.5rem;
 }
 
-.sumir {
-    display: none;
+.table th,
+.table td {
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  vertical-align: middle;
 }
 
-.alert-container {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.815);
-    backdrop-filter: blur(1.5rem);
+.table th {
+  background: #f7f7f7;
+  color: #111;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.alert-container p {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 1rem;
+/* Zebra */
+.table tbody tr:nth-child(even) td {
+  background: #fbfbfb;
 }
 
-.alterar-info:hover {
-    background-color: #ffffff;
+/* Botões genéricos */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .02s ease, filter .2s ease, background-color .2s ease, border-color .2s ease;
+  background: #e9e9e9;
+  color: #111;
 }
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover { filter: brightness(0.95); }
+
+/* Botões de ação em linha (alterar/excluir) */
+.alterar-info:hover { background-color: #ffffff; }
 
 .botao-alterar,
 .botao-excluir {
-    border: None;
-    background: none;
-    width: 100%;
-    height: 100%;
-    transition: 0.3s;
+  border: none;
+  background: none;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s;
+  padding: 0; /* Corrige 'padding: none' inválido */
 }
+
+.botao-alterar { color: #0d6efd; }
+.botao-excluir { color: #dc3545; }
 
 .botao-alterar:active,
 .botao-excluir:active {
-    font-size: .7rem;
-
+  transform: scale(0.98);
 }
 
-.botao-alterar {
-    color: #0055a5;
+/* Modal/alerta */
+.alert-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
 }
 
-.botao-excluir {
-    color: #a50000;
+.alert-container p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* Responsividade padrão dos componentes */
+@media (max-width: 680px) {
+  .table { min-width: 100%; font-size: 0.9rem; }
 }

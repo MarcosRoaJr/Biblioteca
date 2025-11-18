@@ -1,51 +1,60 @@
 {% extends "base.html" %}
 {% block title %}Página Inicial{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/reutilizaveis.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/componentes.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rotas/buscaremprestimo.css') }}">
+{% endblock %}
+
 {% block content %}
-
-<head>
-    <link rel="stylesheet" href="../../../static/css/rotas/buscaremprestimo.css">
-</head>
-
 <div class="d-flex-center d-collun">
-    <div class="container-buscaremprestimo shield">
-        <form action="" method="post">
-            <h2>Buscar emprestimo</h2>
-            <label>ID emprestimo:</label>
-            <input type="text" id="emprestimo_id" name="emprestimo_id">
-            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
+    <div class="container-buscaremprestimo shield" role="search">
+        <!-- Buscar por ID do empréstimo -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por ID do empréstimo">
+            <h2>Buscar empréstimo</h2>
+            <label for="emprestimo_id">ID do empréstimo</label>
+            <input type="text" id="emprestimo_id" name="emprestimo_id" inputmode="numeric" pattern="[0-9]+">
+            <button type="submit" class="botao-enviar" data-ensure-filled="#emprestimo_id">Procurar</button>
         </form>
-        <form action="" method="post">
-            <label>Nome Livro:</label>
-            <select name="livro_escolhido" id="livro_escolhido">
+
+        <!-- Buscar por Título do livro -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por Título do livro">
+            <label for="livro_escolhido">Nome do livro</label>
+            <select name="livro_escolhido" id="livro_escolhido" required>
                 <option value="">-- Selecione --</option>
-                {% for escolha in titulos %}
+                {% for escolha in titulos or [] %}
                 <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
                 {% endfor %}
             </select>
-            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
         </form>
-        <form action="" method="post">
-            <label>ID Usuario:</label>
-            <input type="text" id="id_usuario" name="id_usuario">
-            <button id="botao" type="submit" class="botao-enviar">Procurar</button>
+
+        <!-- Buscar por ID do usuário -->
+        <form action="" method="post" class="buscar-form" aria-label="Buscar por ID do usuário">
+            <label for="id_usuario">ID do usuário</label>
+            <input type="text" id="id_usuario" name="id_usuario" inputmode="numeric" pattern="[0-9]+">
+            <button type="submit" class="botao-enviar" data-ensure-filled="#id_usuario">Procurar</button>
         </form>
     </div>
-    <div>
-        <div>
-            <div>
-                <table class="table">
+
+    <div class="container-buscaremprestimoinfo buscaremprestimo-table">
+        <div class="table-responsive">
+            <table class="table" aria-label="Resultados de empréstimos">
+                <thead>
                     <tr>
-                        <th>ID do emprestimo</th>
-                        <th>Usuario</th>
+                        <th>ID do empréstimo</th>
+                        <th>Usuário</th>
                         <th>Livro</th>
-                        <th>Numero do exemplar</th>
+                        <th>Nº exemplar</th>
                         <th>Etiqueta</th>
-                        <th>Data de saida do livro</th>
-                        <th>Hora da saida do livro</th>
-                        <th>Data previta para deveolução</th>
-                        <th>Status do emprestimo</th>
-                        <th>Data da deveolução</th>
+                        <th>Data de saída</th>
+                        <th>Hora de saída</th>
+                        <th>Data prevista devolução</th>
+                        <th>Status</th>
+                        <th>Data de devolução</th>
                     </tr>
+                </thead>
+                <tbody>
                     {% if emprestimo %}
                     {% for emprestimo in emprestimo %}
                     <tr>
@@ -63,50 +72,66 @@
                     {% endfor %}
                     {% else %}
                     <tr>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
-                        <td>Sem resultados</td>
+                        <td colspan="10" style="text-align:center;">Sem resultados</td>
                     </tr>
                     {% endif %}
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-{% if nivel > 4 %}
-<div>
-    <h2>Alterar cadastro de emprestimo</h2>
-    <form action="" method="post">
 
-        <label for="">Alterar Livro:</label>
-        <select name="livro_escolhido" id="livro_escolhido">
+{% if nivel > 4 %}
+<div class="container-buscaremprestimo shield" style="width:min(980px,95vw);">
+    <h2>Alterar cadastro de empréstimo</h2>
+    <form action="" method="post" class="buscar-form" aria-label="Alterar cadastro de empréstimo">
+        <label for="livro_escolhido_alt">Alterar livro</label>
+        <select name="livro_escolhido" id="livro_escolhido_alt">
             <option value="">-- Selecione --</option>
-            {% for escolha in titulos %}
+            {% for escolha in titulos or [] %}
             <option value="{{ escolha.id_livro }}">{{ escolha.titulo }}</option>
             {% endfor %}
         </select>
 
-        <label for="data_saida">Data de saida do livro:</label>
+        <label for="data_saida">Data de saída do livro</label>
         <input type="date" id="data_saida" name="data_saida">
 
-        <label for="hora_saida">Hora da saida do livro:</label>
+        <label for="hora_saida">Hora de saída do livro</label>
         <input type="time" id="hora_saida" name="hora_saida">
 
-        <label for="data_prevista_devolucao">Data prevista para deveolução:</label>
+        <label for="data_prevista_devolucao">Data prevista para devolução</label>
         <input type="date" id="data_prevista_devolucao" name="data_prevista_devolucao">
 
-        <label for="status_emprestimo">Status do emprestimo:</label>
+        <label for="status_emprestimo">Status do empréstimo</label>
         <select name="status_emprestimo" id="status_emprestimo">
+            <!-- opções preenchidas no back -->
         </select>
-        <button style="margin-top: 1rem;">Enviar</button>
+
+        <button class="btn btn-primary" style="margin-top: 1rem;">Enviar</button>
     </form>
 </div>
 {% endif %}
+
+<!-- JS: auto-submit no select e evitar submit vazio -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectLivro = document.getElementById('livro_escolhido');
+        if (selectLivro) {
+            selectLivro.addEventListener('change', function () {
+                if (this.value) this.form.submit();
+            });
+        }
+
+        document.querySelectorAll('button[data-ensure-filled]').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const selector = this.getAttribute('data-ensure-filled');
+                const input = document.querySelector(selector);
+                if (input && !input.value.trim()) {
+                    e.preventDefault();
+                    input.focus();
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

@@ -1,14 +1,60 @@
+/* =====================================================
+   ROTA: BUSCAR (estilos específicos da página)
+   - Layout da seção de busca, formulários e ajustes locais
+   ===================================================== */
+
 .container-buscar {
-    margin: 1.5rem;
+  margin: 1.5rem;
+  width: min(980px, 95vw);
+}
+
+.container-buscarinfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(1200px, 98vw);
+}
+
+/* Form de busca (ID, título, ISBN) */
+.buscar-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem 0.8rem;
+  align-items: center;
+  margin: 0.8rem 0;
+}
+
+.buscar-form label {
+  grid-column: 1 / -1;
+  font-weight: bold;
 }
 
 .container-buscar form input,
 .container-buscar form select {
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    border: 1px solid black;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.35rem;
+  border: 1px solid #b8b8b8;
+  outline: none;
 }
 
-.container-buscar form {
-    margin: 0.8rem;
+.container-buscar form input:focus,
+.container-buscar form select:focus {
+  border-color: #7a7a7a;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+
+.hint {
+  color: #666;
+  font-size: 0.8rem;
+  grid-column: 1 / -1;
+}
+
+/* Ajustes de tabela dentro desta página (se necessário) */
+.container-buscarinfo .table {
+  margin: 0;
+}
+
+/* Responsivo específico da página */
+@media (max-width: 680px) {
+  .buscar-form { grid-template-columns: 1fr; }
 }

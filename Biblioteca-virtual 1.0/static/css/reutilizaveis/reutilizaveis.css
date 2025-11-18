@@ -1,25 +1,22 @@
-.d-flex {
-    display: flex;
-}
+/* =====================================================
+   REUTILIZÁVEIS (utilitários globais)
+   - Classes de layout, resets pontuais e helpers genéricos
+   ===================================================== */
 
-.d-flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Flex helpers */
+.d-flex { display: flex; }
+.d-flex-center { display: flex; justify-content: center; align-items: center; }
+/* Compat: manter a classe já usada no projeto */
+.d-collun { flex-direction: column; }
+/* Alias recomendável para futuras telas */
+.d-column { flex-direction: column; }
 
-.d-collun {
-    flex-direction: column;
-}
+/* Lists/links util */
+.list-none { list-style: none; }
+.list-none li a { text-decoration: none; }
 
-.list-none {
-    list-style: none;
-}
+/* Controle de scroll */
+.travar-scroll { overflow: hidden; }
 
-.list-none li a {
-    text-decoration: none;
-}
-
-.travar-scroll {
-    overflow: hidden;
-}
+/* Esconder elementos de forma semântica */
+.sumir { display: none !important; }

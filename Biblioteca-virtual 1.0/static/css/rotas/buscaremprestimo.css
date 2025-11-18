@@ -1,13 +1,76 @@
+/* =====================================================
+   ROTA: BUSCAR EMPRESTIMO (estilos específicos da página)
+   ===================================================== */
+
+/* Container principal da seção de busca de empréstimo */
 .container-buscaremprestimo {
-    margin: 1rem;
+    margin: 1.2rem;
+    width: min(980px, 95vw);
+}
+
+/* Wrapper da tabela e conteúdo */
+.container-buscaremprestimoinfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: min(1200px, 98vw);
+}
+
+/* Forms (ID, livro, usuário) */
+.container-buscaremprestimo form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.6rem 0.8rem;
+    align-items: center;
+    margin: 0.8rem 0;
+}
+
+.container-buscaremprestimo form h2 {
+    grid-column: 1 / -1;
+    font-size: 1.35rem;
+    margin-bottom: 0.2rem;
+}
+
+.container-buscaremprestimo form label {
+    grid-column: 1 / -1;
+    font-weight: bold;
 }
 
 .container-buscaremprestimo form input,
 .container-buscaremprestimo form select {
-    padding: 0.3rem;
+    padding: 0.5rem 0.6rem;
     font-size: 1rem;
-    border-radius: 0.3rem;
-    border: 1px solid black;
-    margin-right: 0.4rem;
-    margin: 0.5rem;
+    border-radius: 0.35rem;
+    border: 1px solid #b8b8b8;
+    outline: none;
+}
+
+.container-buscaremprestimo form input:focus,
+.container-buscaremprestimo form select:focus {
+    border-color: #7a7a7a;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Botão padrão: usa .btn/.btn-primary dos componentes, mas aceitamos .botao-enviar */
+.botao-enviar {
+    composes: btn btn-primary;
+    /* dica semântica; se não usar CSS Modules, deixe como classe auxiliar */
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.4rem;
+    border: 1px solid #0d6efd;
+    background: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Tabela específica desta página (se precisar ajustar) */
+.buscaremprestimo-table .table {
+    margin: 0;
+}
+
+/* Responsivo específico */
+@media (max-width: 680px) {
+    .container-buscaremprestimo form {
+        grid-template-columns: 1fr;
+    }
 }

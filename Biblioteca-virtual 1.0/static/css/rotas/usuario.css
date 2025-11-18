@@ -1,0 +1,83 @@
+.usuario {
+    margin: 2.5rem;
+}
+
+.container-usuario {
+    margin: 0;
+    padding: 1.5rem;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    gap: 1rem;
+}
+
+.container-usuario ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.usuario-info {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.usuario-info li {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.usuario-alterar {
+    width: auto;
+    padding: 1rem;
+    margin: .5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.usuario-alterar>div {
+    margin-right: 1rem;
+}
+
+.usuario-alterar>div>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-alterar>div>form>label {
+    margin: .5rem 0;
+    font-weight: bold;
+    color: #555;
+}
+
+.usuario-alterar>div>form>input {
+    padding: .5rem;
+    border-radius: .8rem;
+    border: 1px solid #ccc;
+    width: 10rem;
+}
+
+.usuario-alterar>div>form>button {
+    padding: .5rem 1rem;
+    border-radius: .8rem;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    width: 12rem;
+    margin-top: 0.3rem;
+}
+
+.usuario-alterar>div>form>button:hover {
+    background-color: #45a049;
+}
+
+.usuario-alterar>div>form>button:active {
+    background-color: #327234;
+}
